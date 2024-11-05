@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client"
-import { BaggageClaim, Heart, ShoppingCart, User } from "lucide-react";
+import { BaggageClaim, Heart, ShoppingCart} from "lucide-react";
 import { useRouter } from "next/navigation";
 import MenuList from "./MenuList";
 import ItemsMenuMobile from "./ItemsMenuMobile";
