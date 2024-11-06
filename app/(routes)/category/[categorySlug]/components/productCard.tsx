@@ -38,7 +38,7 @@ const ProductCard = (props: ProductCardProps) => {
                             return (
                                 <CarouselItem key={image.id} className="group flex flex-col justify-center items-center">
                                     <img
-                                        src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${image.url}`}
+                                        src={`${image.url}`}
                                         alt={product.productName}
                                         className="rounded-xl h-[320px] object-contain"
                                     />

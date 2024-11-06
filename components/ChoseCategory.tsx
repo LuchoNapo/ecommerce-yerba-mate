@@ -18,7 +18,7 @@ const ChoseCategory = () => {
                     result.map((category: CategoryType) => (
                         <Link key={category.id} href={`/category/${category.slug}`} className="relative w-full overflow-hidden bg-no-repeat bg-cover rounded-lg">
                             <img
-                                src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${category.mainImage[0].url}`}
+                                src={`${category.mainImage[0].url}`}
                                 alt={category.categoryName}
                                 className="w-full h-full transition object-cover  duration-300 ease-in-out rounded-lg hover:scale-110"
                             />

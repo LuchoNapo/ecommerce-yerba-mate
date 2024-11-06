@@ -19,7 +19,7 @@ const CarouselProduct = (props: CarouselProductProps) => {
                         <CarouselItem key={image.id}>
                             <img 
                             className="rounded-lg w-full" 
-                            src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${image.url}`} 
+                            src={`${image.url}`} 
                             alt="Image product" 
                             />
                         </CarouselItem>

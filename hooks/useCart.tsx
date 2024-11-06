@@ -3,9 +3,6 @@ import { persist, createJSONStorage } from "zustand/middleware"
 import { create } from 'zustand'
 import { toast } from "./use-toast";
 
-
-
-
 interface CartStore {
     items: ProductType[],
     addItem: (data: ProductType) => void
