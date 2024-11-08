@@ -28,7 +28,7 @@ const FeaturedProducts = () => {
     }, [])
     
     return (
-        <div className="max-w-6xl py-4 mx-auto sm:py-16 sm:pb-28 sm:px-14">
+        <div className="max-w-6xl py-10 mx-auto sm:py-16 sm:pb-28 sm:px-14">
             <h3 className="px-6 text-2xl sm:text-3xl pb-4">Productos destacados</h3>
             <Carousel
                 opts={{
@@ -40,7 +40,7 @@ const FeaturedProducts = () => {
                     {result != null && (
                         result.map((product: ProductType) => {
                             return (
-                                <CarouselItem key={product.id} className="md:basis-1/2 lg:basis-1/3 group">
+                                <CarouselItem key={product.id} className="basis-3/4 md:basis-1/2 lg:basis-1/3 group">
                                     <Card className="border bg-gray-100 dark:bg-[#0D0B0A] dark:border-stone-900 border-gray-200 shadow-none">
                                         <CardContent className="relative flex items-center justify-center py-2">
                                             <img
