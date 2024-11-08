@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -45,7 +44,7 @@
   }
 
   .dark {
-    --background: 20 14.3% 4.1%;
+    --background: 20 20% 3%;
     --foreground: 60 9.1% 97.8%;
     --card: 20 14.3% 4.1%;
     --card-foreground: 60 9.1% 97.8%;
@@ -76,6 +75,9 @@
 @layer base {
   * {
     @apply border-border;
+  }
+  *::selection {
+    @apply bg-lime-800 text-white;
   }
   body {
     @apply bg-background text-foreground;

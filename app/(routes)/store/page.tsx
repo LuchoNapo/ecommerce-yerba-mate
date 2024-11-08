@@ -4,7 +4,7 @@ import { Separator } from "@/components/ui/separator"
 import { useRouter } from "next/navigation"
 import FiltersControlsCategory from "../category/[categorySlug]/components/filtersControlsCategory"
 import SkeletonSchema from "@/components/SkeletonSchema"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { ProductType } from "@/types/product"
 import { useGetAllProducts } from "@/api/getAllProducts"
 import ProductCard from "@/components/ProductCard"
@@ -20,6 +20,15 @@ export default function Store() {
             : result.filter((product: ProductType) =>
                 product.origin === filterOrigin)
     )
+
+    const [grid, setGrid] = useState(0)
+    useEffect(() => {
+        const updateGrid = () => {
+            setGrid(window.innerWidth < 768 ? 2 : 7);
+        };
+        updateGrid();
+
+    }, [])
 
     const route = useRouter()
     return (
@@ -40,9 +49,11 @@ export default function Store() {
             </div>
             <div className="sm:flex sm:justify-between">
                 <FiltersControlsCategory setFilterOrigin={setFilterOrigin} />
-                <div className="grid mt-8 lg:grid-cols-3 grid-cols-2 w-full gap-2 px-2">
+                <div className="grid mt-8 lg:grid-cols-3 grid-cols-2 w-full gap-3 px-2">
                     {loading && (
-                        <SkeletonSchema grid={2} />
+                        <>
+                            <SkeletonSchema grid={grid} />
+                        </>
                     )}
                     {filteredProduct !== null && !loading && (
                         filteredProduct.map((product: ProductType) => (

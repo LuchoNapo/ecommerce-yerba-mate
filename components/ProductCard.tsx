@@ -24,14 +24,14 @@ const ProductCard = (props: ProductCardProps) => {
     return (
         <Link
             href={`/product/${product.slug}`}
-            className="relative p-2 transition-all duration-100 rounded-sm border bg-stone-50">
+            className="relative p-1.5 transition-all duration-100 rounded-sm border dark:bg-[#0D0B0A] bg-stone-50">
             <Carousel
                 opts={
                     {
                         align: "start"
                     }
                 }
-                className="w-full h-[250px] max-w-sm"
+                className="w-full h-[190px] max-w-sm"
             >
                 <CarouselContent className="h-full">
                     {
@@ -41,7 +41,7 @@ const ProductCard = (props: ProductCardProps) => {
                                     <img
                                         src={`${image.url}`}
                                         alt={product.productName}
-                                        className="rounded-xl h-[220px] object-contain"
+                                        className="rounded-xl h-[185px] object-contain"
                                     />
                                     <div className="absolute w-full px-6 transition duration-200 opacity-0 group-hover:opacity-100 bottom-5">
                                         <div className="flex justify-center gap-x-6">

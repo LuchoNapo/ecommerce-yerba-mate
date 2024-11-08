@@ -9,7 +9,7 @@ const Success = () => {
         <div className="max-w-6xl py-4 mx-auto sm:py-16 md:px-14 px-5">
             <div className="flex flex-col-reverse gap-5 sm:flex-row items-center">
                 <div className="flex justify-center">
-                    <img className="rounded-3xl w-80 lg:w-96 lg:h-[450px] h-80 object-cover object-bottom" src="mate.jpg" alt="success"/>
+                    <img className="rounded-3xl w-80 lg:w-96 lg:h-[450px] h-80 object-cover object-bottom" src="mate.webp" alt="success"/>
                 </div>
                 <div className="lg:max-w-[500px] text-pretty" >
                     <h1 className="text-3xl">¡Gracias por tu compra!</h1>

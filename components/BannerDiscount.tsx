@@ -3,7 +3,7 @@ import { buttonVariants } from "./ui/button";
 
 const BannerDiscount = () => {
     return (
-        <div className="relative p-5 sm:p-20 text-center bg-[url('/mate-parallax.jpg')] bg-fixed bg-cover bg-center text-white"> 
+        <div className="relative p-5 sm:p-20 text-center bg-[url('/mate-parallax.webp')] bg-fixed bg-cover bg-center text-white"> 
             <div className="absolute inset-0 bg-black/50"></div>
             <div className="relative z-10">
                 <h2 className="uppercase font-black text-2xl">Consigue hasta un -25%</h2>
