@@ -14,10 +14,10 @@ const Navbar = () => {
     const { lovedItems } = useLovedItem();
 
     return (
-        <div className="flex items-center justify-between p-4 mx-auto cursor-pointer sm:max-w-4xl md:max-w-6xl md:px-10">
-            <div className="flex gap-2 items-center">
+        <div className="flex items-end justify-between p-4 mx-auto cursor-pointer sm:max-w-4xl md:max-w-6xl md:px-10">
+            <div className="flex py-2 flex-col gap-1 items-center select-none" onClick={() => router.push("/")}>
                 <img src="/logo-mate.svg" alt="logo" width={25} height={25} />
-                <h1 className="text-3xl font-bold" onClick={() => router.push("/")}>
+                <h1 className="text-3xl font-castor">
                     Mateina
                 </h1>
             </div>
