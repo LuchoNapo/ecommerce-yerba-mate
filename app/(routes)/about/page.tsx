@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 const Offers = () => {
     const router = useRouter()
     return (
-        <div className="max-w-6xl py-4 mx-auto sm:py-28 md:px-14 px-5 flex flex-col items-center justify-center ">
+        <div className="max-w-6xl flex flex-col items-center justify-center mx-5 md:mx-auto py-10 md:px-14 px-5   bg-gray-100 rounded-lg ">
             <h3 className="pb-4">Compartimos tu pasión por el mate</h3>
             <h2 className="before:block before:absolute before:-inset-1 before:-skew-y-3 before:-z-20 dark:before:bg-neutral-900 before:bg-gray-200 relative md:text-4xl text-2xl mb-5">
                 Somos
