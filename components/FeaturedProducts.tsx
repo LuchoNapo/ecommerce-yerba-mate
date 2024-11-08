@@ -21,7 +21,7 @@ const FeaturedProducts = () => {
 
     return (
         <div className="max-w-6xl py-4 mx-auto sm:py-16 sm:pb-28 sm:px-14">
-            <h3 className="px-6 text-3xl sm:pb-8">Productos destacados</h3>
+            <h3 className="px-6 text-2xl sm:text-3xl sm:pb-8">Productos destacados</h3>
             <Carousel
                 opts={{
                     loop: true,

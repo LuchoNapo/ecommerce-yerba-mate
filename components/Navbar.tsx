@@ -15,7 +15,7 @@ const Navbar = () => {
 
     return (
         <div className="flex items-end justify-between p-4 mx-auto cursor-pointer sm:max-w-4xl md:max-w-6xl md:px-10">
-            <div className="flex py-2 flex-col gap-1 items-center select-none" onClick={() => router.push("/")}>
+            <div className="flex py-1 md:py-2 flex-col gap-1 items-center select-none" onClick={() => router.push("/")}>
                 <img src="/logo-mate.svg" alt="logo" width={25} height={25} />
                 <h1 className="text-3xl font-castor">
                     Mateina
@@ -25,10 +25,10 @@ const Navbar = () => {
             <div className="items-center hidden justify-between md:flex">
                 <MenuList />
             </div>
-            <div className="flex md:hidden">
+            <div className="flex py-1 md:hidden">
                 <ItemsMenuMobile />
             </div>
-            <div className="flex items-center justify-between gap-2 sm:gap-7">
+            <div className="flex items-center justify-between gap-3 sm:gap-7">
                 {cart.items.length === 0 ? (
                     <ShoppingCart strokeWidth="1" className="cursor-pointer" onClick={() => router.push("/cart")} />
                 ) : (

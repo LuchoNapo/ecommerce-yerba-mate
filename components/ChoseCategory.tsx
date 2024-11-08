@@ -11,8 +11,8 @@ const ChoseCategory = () => {
 
     return (
 
-        <div className="max-w-6xl py-4 mx-auto sm:py-16 sm:px-14">
-            <h3 className="px-6 pb-4 text-3xl sm:pb-8">Elegí tu categoria favorita</h3>
+        <div className="max-w-6xl py-4 mx-auto sm:py-16 sm:px-14 px-2">
+            <h3 className="px-6 pb-4 sm:text-3xl text-2xl text-nowrap sm:pb-8">Elegí tu categoria favorita</h3>
             <div className="flex gap-5">
                 {!loading && result !== undefined && (
                     result.map((category: CategoryType) => (
