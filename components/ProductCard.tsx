@@ -10,6 +10,7 @@ import IconButton from "@/components/IconButton";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import { useCart } from "@/hooks/useCart";
 import Badge from "@/components/Badge";
+import { Separator } from "./ui/separator";
 
 type ProductCardProps = {
     product: ProductType
@@ -23,14 +24,14 @@ const ProductCard = (props: ProductCardProps) => {
     return (
         <Link
             href={`/product/${product.slug}`}
-            className="relative p-2 transition-all duration-100 rounded-lg hover:shadow-md">
+            className="relative p-2 transition-all duration-100 rounded-sm border bg-stone-50">
             <Carousel
                 opts={
                     {
                         align: "start"
                     }
                 }
-                className="w-full h-[350px] max-w-sm"
+                className="w-full h-[250px] max-w-sm"
             >
                 <CarouselContent className="h-full">
                     {
@@ -40,7 +41,7 @@ const ProductCard = (props: ProductCardProps) => {
                                     <img
                                         src={`${image.url}`}
                                         alt={product.productName}
-                                        className="rounded-xl h-[320px] object-contain"
+                                        className="rounded-xl h-[220px] object-contain"
                                     />
                                     <div className="absolute w-full px-6 transition duration-200 opacity-0 group-hover:opacity-100 bottom-5">
                                         <div className="flex justify-center gap-x-6">
@@ -62,9 +63,10 @@ const ProductCard = (props: ProductCardProps) => {
                     }
                 </CarouselContent>
             </Carousel>
-            <div className="flex flex-col gap-2 h-1/5">
-                <Badge product={product} class={"justify-center"} />
-                <p className="md:text-2xl text-lg text-center">{product.productName}</p>
+            <Separator />
+            <div className="flex flex-col gap-2 h-1/5 p-0">
+                <Badge product={product} class={"justify-center text-sm pb-1"} />
+                <p className="md:text-xl text-lg text-center">{product.productName}</p>
                 <p className="font-bold text-center">{formatPrice(product.price)}</p>
             </div>
         </Link>

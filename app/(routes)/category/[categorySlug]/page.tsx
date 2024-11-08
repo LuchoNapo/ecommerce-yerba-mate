@@ -1,6 +1,6 @@
 "use client"
 import { Separator } from "@/components/ui/separator";
-import ProductCard from "./components/productCard";
+
 import FiltersControlsCategory from "./components/filtersControlsCategory";
 import SkeletonSchema from "@/components/SkeletonSchema";
 
@@ -10,6 +10,7 @@ import { useParams } from "next/navigation";
 import { ResponseType } from "@/types/response";
 import { ProductType } from "@/types/product";
 import { useState } from "react";
+import ProductCard from "@/components/ProductCard";
 
 
 export default function Page() {

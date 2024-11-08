@@ -12,8 +12,8 @@ const FilterOrigin = (props: FilterOriginProps) => {
     const { result, loading }: FilterType = useGetProductsField()
 
     return (
-        <div className="my-5">
-            <p className="mn-3 font-bold">Origen</p>
+        <div className="mx-5">
+            <p className="mb-3 text-xl font-castor">Origen</p>
             {loading && result == null && (
                 <p>Cargando Origen...</p>
             )}

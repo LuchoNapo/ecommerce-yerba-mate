@@ -39,7 +39,7 @@ const MenuList = () => {
                   </a>
                 </NavigationMenuLink>
               </li>
-              <ListItem href="/" title="Tienda">
+              <ListItem href="/store" title="Tienda">
                 Accede a toda tu información, tus pedidos y mucho más
               </ListItem>
               <ListItem href="/offers" title="Ofertas">

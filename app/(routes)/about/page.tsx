@@ -3,12 +3,12 @@
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 
-const Offers = () => {
+const About = () => {
     const router = useRouter()
     return (
         <div className="max-w-6xl flex flex-col items-center justify-center mx-5 md:mx-auto py-10 md:px-14 px-5 rounded-3xl dark:bg-[#0e0c0c96] bg-gray-100/60 ">
             <h3 className="pb-4">Compartimos tu pasión por el mate</h3>
-            <h2 className="super relative md:text-4xl text-2xl mb-5 before:content-[''] before:block before:absolute before:-inset-1 before:-skew-y-3 before:z-[-1] before:bg-stone-600 dark:before:bg-amber-100">
+            <h2 className="relative md:text-4xl text-2xl mb-5 before:content-[''] before:block before:absolute before:-inset-1 before:-skew-y-3 before:z-[-1] before:bg-stone-600 dark:before:bg-amber-100">
                 Somos
                 <span className="ml-3 font-castor tracking-wider">
                     MATEINA
@@ -27,4 +27,4 @@ const Offers = () => {
     );
 }
 
-export default Offers;
+export default About;

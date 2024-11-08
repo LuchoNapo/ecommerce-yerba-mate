@@ -10,7 +10,7 @@ const BannerProduct = () => {
                 <p>Sumergete en una experiencia única</p>
                 <h4 className="mt-2 text-6xl font-castor tracking-wider">Yerba mate de primera</h4>
                 <p className="my-2 text-lg">Despertá tus sentidos en cada cebada</p>
-                <Link href="#" className={buttonVariants()}>Comprar</Link>
+                <Link href="/store" className={buttonVariants()}>Comprar</Link>
             </div>
         </div>
  
