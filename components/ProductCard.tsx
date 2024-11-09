@@ -21,6 +21,7 @@ const ProductCard = (props: ProductCardProps) => {
     const router = useRouter()
     const { addItem } = useCart()
 
+
     return (
         <Link
             href={`/product/${product.slug}`}
