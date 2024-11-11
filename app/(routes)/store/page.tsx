@@ -17,7 +17,6 @@ export default function Store() {
     const [filterOrigin, setFilterOrigin] = useState("");
     const [isMobile, setIsMobile] = useState(false);
     const [filterExpand, setFilterExpand] = useState(false);
-    const route = useRouter()
 
 
 
