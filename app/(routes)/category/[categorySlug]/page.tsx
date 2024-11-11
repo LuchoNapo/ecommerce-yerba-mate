@@ -46,11 +46,11 @@ export default function Page() {
             ></div>
             <div className="sm:flex">
                 {isMobile && result !== null ? (
-                    <FilterMenu
-                        isOpen={filterExpand}
-                        setFilterExpand={setFilterExpand}
-                        setFilterOrigin={setFilterOrigin}
-                        filteredProduct={filteredProduct}>
+                    <FilterMenu 
+                    isOpen={filterExpand} 
+                    setFilterExpand={setFilterExpand} 
+                    setFilterOrigin={setFilterOrigin} 
+                    filteredProduct={filteredProduct}>
                         <h3 className="font-castor text-xl tracking-wider">
                             {result[0].category.categoryName}
                         </h3>

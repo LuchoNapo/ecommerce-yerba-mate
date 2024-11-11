@@ -1,7 +1,6 @@
 "use client"
 
 import { Separator } from "@/components/ui/separator"
-import { useRouter } from "next/navigation"
 import FiltersControlsCategory from "../category/[categorySlug]/components/filtersControlsCategory"
 import SkeletonSchema from "@/components/SkeletonSchema"
 import { useEffect, useState } from "react"
