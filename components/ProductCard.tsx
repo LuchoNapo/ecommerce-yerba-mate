@@ -66,7 +66,7 @@ const ProductCard = (props: ProductCardProps) => {
             </Carousel>
             <Separator />
             <div className="flex flex-col gap-2 h-1/5 p-0">
-                <Badge product={product} class={"justify-center text-sm pb-1"} />
+                <Badge product={product} class={"justify-center sm:text-sm text-[12px] pb-1"} />
                 <p className="md:text-xl text-lg text-center">{product.productName}</p>
                 <p className="font-bold text-center">{formatPrice(product.price)}</p>
             </div>

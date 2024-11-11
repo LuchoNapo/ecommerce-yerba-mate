@@ -40,7 +40,7 @@ const MenuList = () => {
                 </NavigationMenuLink>
               </li>
               <ListItem href="/store" title="Tienda">
-                Accede a toda tu información, tus pedidos y mucho más
+                Accede a todas nuestra tienda y ver todos nuestros productos
               </ListItem>
               <ListItem href="/offers" title="Ofertas">
                 Sección dedicada a promociones y descuentos especiales
