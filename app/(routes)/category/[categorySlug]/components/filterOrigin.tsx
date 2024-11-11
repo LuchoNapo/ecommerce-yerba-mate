@@ -51,11 +51,11 @@ const FilterOrigin = (props: FilterOriginProps) => {
                             ))}
                         </RadioGroup>
                         {isMobile ? (
-                            <div className="flex absolute bottom-[62%] w-full items-center justify-around left-0 text-white">
+                            <div className="flex absolute bottom-[52%] w-full items-center justify-around left-0">
                                 <div onClick={handleClearFilters} >
                                     Limpiar Filtros
                                 </div>
-                                <div className=" bg-lime-800 text-center py-1 px-3 rounded-sm" onClick={() => setFilterExpand(false)}>
+                                <div className="text-white bg-lime-800 text-center py-1 px-3 rounded-sm" onClick={() => setFilterExpand(false)}>
                                     Ver resultados ({filteredProduct?.length})
                                 </div>
                             </div>

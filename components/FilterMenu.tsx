@@ -21,7 +21,7 @@ const FilterMenu = ({ isOpen, setFilterExpand, setFilterOrigin, filteredProduct,
             </button>
             <div
                 className={` fixed bottom-0 left-0 w-full bg-white dark:bg-stone-900 z-50 h-full transform transition-all duration-500 ease-in-out
-            ${isOpen ? "translate-y-[60%] opacity-100 visible" : "translate-y-full opacity-0 invisible"}`}
+            ${isOpen ? "translate-y-2/4 opacity-100 visible" : "translate-y-full opacity-0 invisible"}`}
             >
                 <div className="flex items-center justify-between p-4 ">
                     <h1 className="">Filtros</h1>
