@@ -1,14 +1,18 @@
+import FilterTaste from "@/components/filterTaste";
 import FilterOrigin from "./filterOrigin";
 
 type FiltersControlsCategoryProps = {
     setFilterOrigin:  (origin: string) => void;
-    setFilterExpand:  (expand: boolean) => void;
+    setFilterTaste:  (origin: string) => void;
+    filterTaste: string;
+    filterOrigin: string;
+
 }
-const FiltersControlsCategory = (props: FiltersControlsCategoryProps) => {
-    const { setFilterOrigin, setFilterExpand } = props;
+const FiltersControlsCategory = ({filterOrigin, setFilterOrigin, setFilterTaste, filterTaste}: FiltersControlsCategoryProps) => {
     return ( 
-        <div className="sm:w-[350px] sm:mt-5 p-6">
-            <FilterOrigin setFilterOrigin={setFilterOrigin} setFilterExpand={setFilterExpand} />
+        <div className="sm:w-[350px] sm:mt-5">
+            <FilterOrigin setFilterOrigin={setFilterOrigin} filterOrigin={filterOrigin} />
+            <FilterTaste setFilterTaste={setFilterTaste}  filterTaste={filterTaste} />
         </div>
     );
 }

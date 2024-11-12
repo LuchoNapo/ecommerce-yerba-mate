@@ -9,6 +9,9 @@ export type FilterType = {
 export type ResultFilterType = {
     schema: {
         attributes: {
+            taste: {
+                enum: string[];
+            },
             origin: {
                 enum: string[];
             }

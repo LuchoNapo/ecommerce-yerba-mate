@@ -25,14 +25,14 @@ const ProductCard = (props: ProductCardProps) => {
     return (
         <Link
             href={`/product/${product.slug}`}
-            className="relative p-1.5 transition-all duration-100 rounded-sm border dark:bg-[#0D0B0A] bg-stone-50">
+            className="relative p-1.5 transition-all duration-100 rounded-sm border dark:bg-[#0D0B0A] bg-stone-50 h-[350px]">
             <Carousel
                 opts={
                     {
                         align: "start"
                     }
                 }
-                className="w-full h-[190px] max-w-sm"
+                className="w-full h-[190px] max-w-sm bg-stone-200 dark:bg-stone-900 rounded-sm"
             >
                 <CarouselContent className="h-full">
                     {
@@ -64,11 +64,11 @@ const ProductCard = (props: ProductCardProps) => {
                     }
                 </CarouselContent>
             </Carousel>
-            <Separator />
-            <div className="flex flex-col gap-2 h-1/5 p-0">
+        
+            <div className="flex flex-col gap-1.5 h-1/5 p-0">
+                <p className="font-bold text-center mt-2 text-lg">{formatPrice(product.price)}</p>
                 <Badge product={product} class={"justify-center sm:text-sm text-[12px] pb-1"} />
                 <p className="md:text-xl text-lg text-center">{product.productName}</p>
-                <p className="font-bold text-center">{formatPrice(product.price)}</p>
             </div>
         </Link>
     );

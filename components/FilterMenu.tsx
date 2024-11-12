@@ -8,17 +8,21 @@ interface FilterProps {
     isOpen: boolean
     setFilterExpand: (expand: boolean) => void;
     setFilterOrigin: (origin: string) => void;
+    setFilterTaste: (taste: string) => void;
     filteredProduct: ProductType[] | null;
+    filterTaste: string;
+    filterOrigin: string;
     children: React.ReactNode
 }
 
-const FilterMenu = ({ isOpen, setFilterExpand, setFilterOrigin, filteredProduct, children }: FilterProps) => {
+const FilterMenu = ({ isOpen, setFilterExpand, setFilterOrigin, filteredProduct, setFilterTaste, filterTaste, filterOrigin, children }: FilterProps) => {
     const [, setSelectedOrigin] = useState("");
 
     const handleClearFilters = () => {
         setSelectedOrigin("");
         setFilterOrigin("");
         setFilterExpand(false);
+        setFilterTaste("");
     };
 
     return (
@@ -38,7 +42,7 @@ const FilterMenu = ({ isOpen, setFilterExpand, setFilterOrigin, filteredProduct,
                             <X size={18} onClick={() => setFilterExpand(false)} />
                         </button>
                     </div>
-                    <FiltersControlsCategory setFilterOrigin={setFilterOrigin} setFilterExpand={setFilterExpand} />
+                    <FiltersControlsCategory setFilterOrigin={setFilterOrigin} setFilterTaste={setFilterTaste} filterOrigin={filterOrigin} filterTaste={filterTaste}/>
 
                     <div className="flex w-full items-center justify-around mt-4 ">
                         <div onClick={handleClearFilters} className="text-sm cursor-pointer">

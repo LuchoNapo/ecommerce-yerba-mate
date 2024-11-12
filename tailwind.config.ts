@@ -12,6 +12,10 @@ const config: Config = {
 		fontFamily: {
 			castor: ['Castor One', 'sans-serif'],
 		},
+		boxShadow: {
+			'inset-dark': 'inset 0 0 5px 2px rgba(163,151,151, 0.3)',
+			'inset': 'inset 0 0 5px 2px rgba(0, 0, 0, 0.3)', 
+		  },
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',

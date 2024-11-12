@@ -1,29 +1,20 @@
 import { useGetProductsField } from "@/api/getProductField";
-import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import useIsMobile from "@/hooks/useIsMobile";
 import { FilterType } from "@/types/filters";
-import { useState } from "react";
 
 type FilterOriginProps = {
     setFilterOrigin: (origin: string) => void;
-    setFilterExpand: (expand: boolean) => void;
+    filterOrigin: string;
 }
 
-const FilterOrigin = (props: FilterOriginProps) => {
-    const { setFilterOrigin, setFilterExpand } = props;
+const FilterOrigin = ({ filterOrigin, setFilterOrigin }: FilterOriginProps) => {
     const { result, loading }: FilterType = useGetProductsField()
-    const [selectedOrigin, setSelectedOrigin] = useState("");
     const isMobile = useIsMobile();
 
-    const handleClearFilters = () => {
-        setSelectedOrigin("");
-        setFilterOrigin("");
-        setFilterExpand(false);
-    };
+
 
     return (
-        <div className="mx-5">
+        <div className="">
             {
                 result !== null ? (
                     <>
@@ -31,21 +22,28 @@ const FilterOrigin = (props: FilterOriginProps) => {
                         {loading == true && !isMobile && (
                             <p>Cargando filtros...</p>
                         )}
-                        <RadioGroup value={selectedOrigin}
-                            onValueChange={(value) => {
-                                setSelectedOrigin(value);
-                                setFilterOrigin(value);
-                            }}>
-                            {result != null && result.schema.attributes.origin.enum.map((origin: string) => (
-                                <div key={origin} className="flex items-center space-x-2">
-                                    <RadioGroupItem value={origin} id={origin} />
-                                    <Label htmlFor={origin}>{origin}</Label>
+                        <div className="grid grid-cols-2 gap-2 w-fit">
+                            {result && result.schema.attributes.origin.enum.map((origin: string) => (
+                                <div key={origin} className="flex items-center">
+
+                                    <input
+                                        type="checkbox"
+                                        value={origin}
+                                        id={`origin-${origin}`}
+                                        className="hidden peer"
+                                        checked={filterOrigin === origin}
+                                        onChange={() => setFilterOrigin(filterOrigin === origin ? "" : origin)}
+                                    />
+                                    <label
+                                        htmlFor={`origin-${origin}`}
+                                        className={`select-none cursor-pointer capitalize dark:bg-stone-900 bg-gray-100 py-1 px-2 my-1 rounded-sm transition duration-200 ease-in-out hover:scale-105 ${filterOrigin === origin ? "shadow-inset dark:shadow-inset-dark " : ""
+                                            }`}
+                                    >
+                                        {origin}
+                                    </label>
                                 </div>
                             ))}
-                        </RadioGroup>
-                        {!isMobile && (
-                            <button className="mt-3 text-sm hover:underline cursor-pointer select-none" onClick={handleClearFilters}>Limpiar filtros</button>
-                        )}
+                        </div>
                     </>
                 ) : (
 

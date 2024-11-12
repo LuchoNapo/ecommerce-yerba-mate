@@ -48,8 +48,6 @@ const FeaturedProducts = () => {
                                                 src={`${product.images[0].url}`}
                                                 alt={product.productName}
                                             />
-
-
                                             <div className="absolute w-full px-6 transition duration-200 opacity-0 group-hover:opacity-100 bottom-5">
                                                 <div className="flex justify-center gap-x-6">
                                                     <IconButton
@@ -65,9 +63,9 @@ const FeaturedProducts = () => {
                                                 </div>
                                             </div>
                                         </CardContent>
-                                        <div className="flex flex-col justify-between  px-8 text-center">
+                                        <div className="flex flex-col justify-between gap-2  px-8 text-center">
                                             <h3 title={product.productName} className="text-lg font-bold truncate text-black dark:text-white" >{product.productName}</h3>
-                                            <Badge product={product} class="text-sm justify-center" />
+                                            <Badge product={product} class="text-sm justify-center mb-2" />
                                         </div>
                                     </Card>
                                 </CarouselItem>
