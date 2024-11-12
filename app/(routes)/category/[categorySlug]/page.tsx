@@ -14,6 +14,7 @@ import { useState } from "react";
 import ProductCard from "@/components/ProductCard";
 import FilterMenu from "@/components/FilterMenu";
 import useIsMobile from "@/hooks/useIsMobile";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function Page() {
     const params = useParams()
@@ -35,7 +36,7 @@ export default function Page() {
             {result !== null && !loading ? (
                 <h1 className="text-3xl font-medium px-3">Yerba Mate {result[0].category.categoryName}</h1>
             ) : (
-                ""
+                <Skeleton className="h-10 w-3/4 sm:w-1/4 mb-2" />
             )}
             <Separator />
             <div
@@ -57,9 +58,9 @@ export default function Page() {
                 ) : (
                     <FiltersControlsCategory setFilterOrigin={setFilterOrigin} setFilterExpand={setFilterExpand} />
                 )}
-                <div className="grid mt-8 xl:grid-cols-3 lg:grid-cols-3 grid-cols-2 w-full gap-5 sm:px-0 px-5">
+                <div className="grid mt-8 xl:grid-cols-3 lg:grid-cols-3 grid-cols-2 w-full gap-2 sm:px-0 px-5">
                     {loading && (
-                        <SkeletonSchema grid={2} />
+                        <SkeletonSchema grid={isMobile ? 2 : 9} class="w-[160px]" />
                     )}
                     {filteredProduct !== null && !loading && (
                         filteredProduct.map((product: ProductType) => (

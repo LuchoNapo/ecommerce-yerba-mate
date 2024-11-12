@@ -51,7 +51,7 @@ export default function Store() {
                 )}
                 <div className="grid mt-8 lg:grid-cols-3 grid-cols-2 w-full gap-3 px-2">
                     {loading && (
-                        <SkeletonSchema grid={isMobile ? 2 : 9} />
+                        <SkeletonSchema grid={isMobile ? 2 : 9} class="w-[160px]" />
                     )}
                     {filteredProduct !== null && !loading && (
                         filteredProduct.map((product: ProductType) => (
