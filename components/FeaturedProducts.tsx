@@ -36,7 +36,7 @@ const FeaturedProducts = () => {
                 }}
             >
                 <CarouselContent className="select-none mx-4">
-                    {loading && <SkeletonSchema grid={grid} />}
+                    {loading && <SkeletonSchema grid={grid} class="" />}
                     {result != null && (
                         result.map((product: ProductType) => {
                             return (
