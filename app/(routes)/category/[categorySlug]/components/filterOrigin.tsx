@@ -1,23 +1,20 @@
 import { useGetProductsField } from "@/api/getProductField";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import useIsMobile from "@/hooks/useIsMobile";
 import { FilterType } from "@/types/filters";
-import { ProductType } from "@/types/product";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 type FilterOriginProps = {
     setFilterOrigin: (origin: string) => void;
-    setFilterExpand:  (expand: boolean) => void;
-    filteredProduct: ProductType[] | null;
-
+    setFilterExpand: (expand: boolean) => void;
 }
 
 const FilterOrigin = (props: FilterOriginProps) => {
-    const { setFilterOrigin, setFilterExpand, filteredProduct } = props;
+    const { setFilterOrigin, setFilterExpand } = props;
     const { result, loading }: FilterType = useGetProductsField()
     const [selectedOrigin, setSelectedOrigin] = useState("");
-    const [isMobile, setIsMobile] = useState(false);
-
+    const isMobile = useIsMobile();
 
     const handleClearFilters = () => {
         setSelectedOrigin("");
@@ -25,10 +22,6 @@ const FilterOrigin = (props: FilterOriginProps) => {
         setFilterExpand(false);
     };
 
-    useEffect(() => {
-        setIsMobile(window.innerWidth < 768 ? true : false);
-    }, [])
-    
     return (
         <div className="mx-5">
             {
@@ -50,17 +43,7 @@ const FilterOrigin = (props: FilterOriginProps) => {
                                 </div>
                             ))}
                         </RadioGroup>
-                        {isMobile ? (
-                            <div className="flex absolute bottom-[52%] w-full items-center justify-around left-0">
-                                <div onClick={handleClearFilters} >
-                                    Limpiar Filtros
-                                </div>
-                                <div className="text-white bg-lime-800 text-center py-1 px-3 rounded-sm" onClick={() => setFilterExpand(false)}>
-                                    Ver resultados ({filteredProduct?.length})
-                                </div>
-                            </div>
-
-                        ) : (
+                        {!isMobile && (
                             <button className="mt-3 text-sm hover:underline cursor-pointer select-none" onClick={handleClearFilters}>Limpiar filtros</button>
                         )}
                     </>
@@ -74,9 +57,6 @@ const FilterOrigin = (props: FilterOriginProps) => {
                     )
                 )
             }
-
-
-
         </div>
     );
 }

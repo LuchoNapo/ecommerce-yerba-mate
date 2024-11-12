@@ -3,21 +3,20 @@
 import { Separator } from "@/components/ui/separator"
 import FiltersControlsCategory from "../category/[categorySlug]/components/filtersControlsCategory"
 import SkeletonSchema from "@/components/SkeletonSchema"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { ProductType } from "@/types/product"
 import { useGetAllProducts } from "@/api/getAllProducts"
 import ProductCard from "@/components/ProductCard"
 import { ResponseType } from "@/types/response"
 import FilterMenu from "@/components/FilterMenu"
 import CategorySelect from "./components/CategorySelect"
+import useIsMobile from "@/hooks/useIsMobile"
 
 export default function Store() {
     const { result, loading }: ResponseType = useGetAllProducts()
     const [filterOrigin, setFilterOrigin] = useState("");
-    const [isMobile, setIsMobile] = useState(false);
     const [filterExpand, setFilterExpand] = useState(false);
-
-
+    const isMobile = useIsMobile()
 
     const filteredProduct = result != null && !loading && (
         filterOrigin === ''
@@ -25,18 +24,6 @@ export default function Store() {
             : result.filter((product: ProductType) =>
                 product.origin === filterOrigin)
     )
-
-    const [grid, setGrid] = useState(0)
-    useEffect(() => {
-        const updateGrid = () => {
-            setGrid(window.innerWidth < 768 ? 2 : 9);
-        };
-        updateGrid();
-    }, [])
-
-    useEffect(() => {
-        setIsMobile(window.innerWidth < 768 ? true : false);
-    }, [])
 
     return (
         <div className="max-w-6xl py-10 mx-auto sm:py-16 sm:pb-28 sm:px-14">
@@ -59,12 +46,12 @@ export default function Store() {
                 ) : (
                     <div>
                         <CategorySelect />
-                        <FiltersControlsCategory setFilterOrigin={setFilterOrigin} setFilterExpand={setFilterExpand} filteredProduct={filteredProduct} />
+                        <FiltersControlsCategory setFilterOrigin={setFilterOrigin} setFilterExpand={setFilterExpand}  />
                     </div>
                 )}
                 <div className="grid mt-8 lg:grid-cols-3 grid-cols-2 w-full gap-3 px-2">
                     {loading && (
-                        <SkeletonSchema grid={grid} />
+                        <SkeletonSchema grid={isMobile ? 2 : 9} />
                     )}
                     {filteredProduct !== null && !loading && (
                         filteredProduct.map((product: ProductType) => (
