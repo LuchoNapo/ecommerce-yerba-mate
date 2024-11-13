@@ -1,7 +1,7 @@
 "use client"
 import { Separator } from "@/components/ui/separator";
 
-import FiltersControlsCategory from "./components/filtersControlsCategory";
+import FiltersControlsCategory from "../../../../components/Filters/FiltersControlsCategory";
 import SkeletonSchema from "@/components/SkeletonSchema";
 
 import { useGetCategoryProduct } from "@/api/getCategoryProduct"
@@ -12,7 +12,7 @@ import { ProductType } from "@/types/product";
 import { useState } from "react";
 
 import ProductCard from "@/components/ProductCard";
-import FilterMenu from "@/components/FilterMenu";
+import FilterMenu from "@/components/Filters/FilterMenu";
 import useIsMobile from "@/hooks/useIsMobile";
 import { Skeleton } from "@/components/ui/skeleton";
 

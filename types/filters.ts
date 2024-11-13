@@ -14,7 +14,13 @@ export type ResultFilterType = {
             },
             origin: {
                 enum: string[];
-            }
+            },
+            brand: {
+                enum: string[];
+            },
+            weight: {
+                enum: string[];
+            },
         }
     }
 }

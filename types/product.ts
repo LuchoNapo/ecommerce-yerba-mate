@@ -8,6 +8,8 @@ export type ProductType = {
     taste: string,
     origin: string,
     price: number,
+    brand: string,
+    weight: string,
     images: {
         id: number,
         url: string

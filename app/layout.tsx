@@ -23,8 +23,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={urbanist.className}>
+    <html lang="en" className="scroll-smooth">
+      <body className={urbanist.className} >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

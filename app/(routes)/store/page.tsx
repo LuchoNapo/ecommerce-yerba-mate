@@ -1,38 +1,63 @@
 "use client"
 
 import { Separator } from "@/components/ui/separator"
-import FiltersControlsCategory from "../category/[categorySlug]/components/filtersControlsCategory"
+import FiltersControlsCategory from "../../../components/Filters/FiltersControlsCategory"
 import SkeletonSchema from "@/components/SkeletonSchema"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { ProductType } from "@/types/product"
 import { useGetAllProducts } from "@/api/getAllProducts"
 import ProductCard from "@/components/ProductCard"
 import { ResponseType } from "@/types/response"
-import FilterMenu from "@/components/FilterMenu"
+import FilterMenu from "@/components/Filters/FilterMenu"
 import CategorySelect from "./components/CategorySelect"
 import useIsMobile from "@/hooks/useIsMobile"
+import { PaginationSection } from "@/components/PaginationSection"
 
 export default function Store() {
     const { result, loading }: ResponseType = useGetAllProducts()
     const [filterOrigin, setFilterOrigin] = useState("");
     const [filterTaste, setFilterTaste] = useState("");
+    const [filterBrand, setFilterBrand] = useState("");
+    const [filterWeight, setFilterWeight] = useState("");
     const [filterExpand, setFilterExpand] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [itemsPerPage] = useState(6);
     const isMobile = useIsMobile()
 
     const filteredProduct = result && !loading && (
         result.filter((product: ProductType) => {
             const matchesOrigin = filterOrigin === "" || product.origin === filterOrigin;
             const matchesTaste = filterTaste === "" || product.taste === filterTaste;
-            return matchesOrigin && matchesTaste;
+            const matchesBrand = filterBrand === "" || product.brand === filterBrand;
+            const matchesWeight = filterWeight === "" || product.weight === filterWeight;
+
+            return matchesOrigin && matchesTaste && matchesBrand && matchesWeight;
         })
     );
+
+    const lastItemIndex = currentPage * itemsPerPage;
+    const firstItemIndex = lastItemIndex - itemsPerPage;
+    const currentItems = filteredProduct?.slice(firstItemIndex, lastItemIndex);
 
     const handleClearFilters = () => {
         setFilterOrigin("");
         setFilterTaste("");
         setFilterExpand(false);
         setFilterTaste("");
+        setFilterBrand("");
+        setFilterWeight("");
     };
+
+    useEffect(() => {
+        if (filterExpand) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "auto";
+        }
+        return () => {
+            document.body.style.overflow = "auto";
+        };
+    }, [filterExpand])
 
     return (
         <div className="max-w-6xl py-10 mx-auto sm:py-16 sm:pb-28 sm:px-14">
@@ -43,40 +68,64 @@ export default function Store() {
                     }`}
                 onClick={() => setFilterExpand(false)}
             ></div>
-            <div className="sm:flex sm:justify-between">
+            <div className="sm:flex sm:justify-center">
                 {isMobile ? (
                     <FilterMenu
                         isOpen={filterExpand}
                         setFilterExpand={setFilterExpand}
                         setFilterOrigin={setFilterOrigin}
                         setFilterTaste={setFilterTaste}
-                        filterTaste={filterTaste}
+                        setFilterBrand={setFilterBrand}
+                        setFilterWeight={setFilterWeight}
+                        setCurrentPage={setCurrentPage}
+                        filterWeight={filterWeight}
+                        filteredProduct={filteredProduct}
                         filterOrigin={filterOrigin}
-                        filteredProduct={filteredProduct}>
-                        <CategorySelect />
-                    </FilterMenu>
+                        filterTaste={filterTaste}
+                        filterBrand={filterBrand}
+                    />
+                  
                 ) : (
-                    <div className="flex flex-col pl-5 gap-2 items-start">
+                    <div className="flex flex-col pl-5 gap-5 items-start w-2/5">
                         <CategorySelect />
-                        <FiltersControlsCategory setFilterOrigin={setFilterOrigin} setFilterTaste={setFilterTaste} filterOrigin={filterOrigin} filterTaste={filterTaste} />
-                        <div onClick={handleClearFilters} className="text-sm cursor-pointer">
+                        <FiltersControlsCategory
+                            setFilterOrigin={setFilterOrigin}
+                            setFilterTaste={setFilterTaste}
+                            setFilterBrand={setFilterBrand}
+                            setFilterWeight={setFilterWeight}
+                            setCurrentPage={setCurrentPage}
+                            filterWeight={filterWeight}
+                            filterOrigin={filterOrigin}
+                            filterTaste={filterTaste}
+                            filterBrand={filterBrand}
+
+                        />
+                        <div onClick={handleClearFilters} className="text-sm cursor-pointer mt-5">
                             Limpiar Filtros
                         </div>
                     </div>
                 )}
-                <div className="grid py-5 lg:grid-cols-3 grid-cols-2 w-full gap-3 px-2">
-                    {loading && (
-                        <SkeletonSchema grid={isMobile ? 2 : 9} class="w-[160px]" />
-                    )}
-                    {filteredProduct !== null && !loading && (
-                        filteredProduct.map((product: ProductType) => (
-                            <ProductCard key={product.id} product={product} />
-                        ))
+                <div className="flex flex-col w-full ">
+                    <div className="grid py-5 lg:grid-cols-3 grid-cols-2 gap-3 ">
+                        {loading && (
+                            <SkeletonSchema grid={isMobile ? 2 : 6} class="w-[160px]" />
+                        )}
+                        {filteredProduct !== null && !loading && (
+                            currentItems.map((product: ProductType) => (
+                                <ProductCard key={product.id} product={product} />
+                            ))
 
-                    )}
-                    {filteredProduct !== null && !loading && filteredProduct.length == 0 && (
-                        <p>No hay productos para mostrar</p>
-                    )}
+                        )}
+                        {filteredProduct !== null && !loading && filteredProduct.length == 0 && (
+                            <p>No hay productos para mostrar</p>
+                        )}
+                    </div>
+                    <PaginationSection
+                        totalItems={filteredProduct?.length}
+                        itemsPerPage={itemsPerPage}
+                        currentPage={currentPage}
+                        setCurrentPage={setCurrentPage}
+                    />
                 </div>
             </div>
         </div>
