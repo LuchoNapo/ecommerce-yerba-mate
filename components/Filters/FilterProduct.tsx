@@ -1,20 +1,20 @@
 import { useGetProductsField } from "@/api/getProductField";
 import { FilterType, ResultFilterType } from "@/types/filters";
-
-import useIsMobile from "@/hooks/useIsMobile";
+import { useEffect, useState } from "react";
 
 type FilterProps = {
     setFilterProducts: (product: string) => void;
     filterProducts: string;
     attributeKey: AttributeKey;
     setCurrentPage: (page: number) => void;
+    isActive: boolean;
 }
 
 type AttributeKey = keyof ResultFilterType["schema"]["attributes"];
 
 const labelMap: { [key: string]: string } = {
     one_kg: "1 kg",
-    half_kg: "1/2 kg", 
+    half_kg: "1/2 kg",
 };
 const attributeLabelMap: { [key in AttributeKey]: string } = {
     taste: "Sabor",
@@ -22,21 +22,27 @@ const attributeLabelMap: { [key in AttributeKey]: string } = {
     brand: "Marca",
     weight: "Peso",
 };
-const FilterProduct = ({ filterProducts, setFilterProducts, attributeKey, setCurrentPage }: FilterProps) => {
-    const { result, loading }: FilterType = useGetProductsField()
-    const isMobile = useIsMobile();
+const FilterProduct = ({ filterProducts, setFilterProducts, attributeKey, setCurrentPage, isActive }: FilterProps) => {
+    const { result }: FilterType = useGetProductsField()
     const attributeEnum = result?.schema.attributes[attributeKey]?.enum;
+    const [highlight, setHighlight] = useState(false);
 
+    useEffect(() => {
+        if (isActive) {
+            setHighlight(true);
+            const timer = setTimeout(() => setHighlight(false), 500);
+            return () => clearTimeout(timer);
+        } else {
+            setHighlight(false);
+        }
+    }, [isActive]);
     return (
-        <div id={attributeKey}>
+        <div id={attributeKey} className={`transition duration-500 sm:pl-0 pl-32 pb-3 ${highlight ? "dark:bg-stone-900/50 bg-gray-100" : ""}`}>
             {
-                result !== null ? (
+                result !== null && (
                     <>
-                        <h2 className="mb-3 text-xl font-castor tracking-wide">{attributeLabelMap[attributeKey]}</h2>
-                        {loading == true && !isMobile && (
-                            <p>Cargando filtros...</p>
-                        )}
-                        <div className="grid grid-cols-2 gap-2 w-fit">
+                        <h2 className="mb-2 text-lg px-2 font-castor tracking-wide">{attributeLabelMap[attributeKey]}</h2>
+                        <div className="flex md:w-[230px] md:gap-1 gap-2 flex-wrap">
                             {result && attributeEnum?.map((product: string) => (
                                 <div key={product} className="flex items-center">
 
@@ -52,12 +58,12 @@ const FilterProduct = ({ filterProducts, setFilterProducts, attributeKey, setCur
                                         htmlFor={`product-${product}`}
                                         onClick={() => setCurrentPage(1)}
                                         className=
-                                        {`text-sm select-none cursor-pointer capitalize 
-                                            dark:bg-stone-900 bg-gray-100 
-                                            py-1 px-2 my-1 rounded-sm 
+                                        {`md:text-sm text-sm select-none cursor-pointer capitalize 
+                                            md:border-none border-2 text-nowrap text-black/50 dark:text-white/50
+                                            py-1 px-2 rounded-sm 
                                             transition duration-300 ease-in-out 
-                                            hover:shadow-inset hover:dark:shadow-inset-dark 
-                                            ${filterProducts === product ? "shadow-inset dark:shadow-inset-dark " : ""}`}
+                                            hover:text-black/100 hover:bg-gray-100 hover:dark:text-white/100 hover:dark:bg-stone-900
+                                            ${filterProducts === product ? "bg-gray-200 text-black/100 dark:bg-stone-900 dark:text-white/100" : ""}`}
                                     >
                                         {labelMap[product] || product}
                                     </label>
@@ -65,14 +71,6 @@ const FilterProduct = ({ filterProducts, setFilterProducts, attributeKey, setCur
                             ))}
                         </div>
                     </>
-                ) : (
-
-                    !isMobile && (
-                        <>
-                            <h2 className="mb-3 text-xl font-castor">{attributeLabelMap[attributeKey]}</h2>
-                            <p>Cargando filtros...</p>
-                        </>
-                    )
                 )
             }
         </div>

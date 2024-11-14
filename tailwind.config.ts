@@ -13,8 +13,6 @@ const config: Config = {
 			castor: ['Castor One', 'sans-serif'],
 		},
 		boxShadow: {
-			'inset-dark': 'inset 0 0 5px 2px rgba(163,151,151, 0.3)',
-			'inset': 'inset 0 0 5px 2px rgba(0, 0, 0, 0.3)', 
 			'top' : '0px -3px 5px 0px rgba(0,0,0,0.1);'
 		  },
   		colors: {

@@ -26,8 +26,11 @@ export default function Page() {
     const [filterBrand, setFilterBrand] = useState("");
     const [filterWeight, setFilterWeight] = useState("");
     const [filterExpand, setFilterExpand] = useState(false);
+    const [activeFilter] = useState<string>("origin");
+
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(6);
+    
 
     const isMobile = useIsMobile();
     const filteredProduct = result && !loading && (
@@ -106,9 +109,11 @@ export default function Page() {
                             filterOrigin={filterOrigin}
                             filterTaste={filterTaste}
                             filterBrand={filterBrand}
+                            activeFilter={activeFilter}
+
 
                         />
-                        <div onClick={handleClearFilters} className="text-sm cursor-pointer">
+                        <div onClick={handleClearFilters} className="text-sm px-2 cursor-pointer">
                             Limpiar Filtros
                         </div>
                     </div>

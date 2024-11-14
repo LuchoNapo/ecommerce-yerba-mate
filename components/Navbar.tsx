@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client"
-import { BaggageClaim, Heart, ShoppingCart} from "lucide-react";
+import { BaggageClaim, Heart, ShoppingCart } from "lucide-react";
 import { useRouter } from "next/navigation";
 import MenuList from "./MenuList";
 import ItemsMenuMobile from "./ItemsMenuMobile";
@@ -8,12 +8,23 @@ import ToggleTheme from "./ToggleTheme"
 import { useCart } from "@/hooks/useCart";
 import { useLovedItem } from "@/hooks/useLovedProducts";
 import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 const Navbar = () => {
+
     const router = useRouter();
     const cart = useCart();
     const { lovedItems } = useLovedItem();
     const { theme } = useTheme();
+    const [mounted, setMounted] = useState(false);
+
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+    if (!mounted) {
+        return null;
+    }
 
     return (
         <div className="flex items-end justify-between p-4 mx-auto cursor-pointer sm:max-w-4xl md:max-w-6xl md:px-10">

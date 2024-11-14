@@ -20,6 +20,8 @@ export default function Store() {
     const [filterWeight, setFilterWeight] = useState("");
     const [filterExpand, setFilterExpand] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
+    const [activeFilter] = useState<string>("origin");
+
     const [itemsPerPage] = useState(6);
     const isMobile = useIsMobile()
 
@@ -84,7 +86,7 @@ export default function Store() {
                     />
 
                 ) : (
-                    <div className="flex flex-col pl-5 gap-5 items-start w-2/5">
+                    <div className="flex flex-col pl-5 gap-2 items-start w-2/5">
                         <FiltersControlsCategory
                             setFilterOrigin={setFilterOrigin}
                             setFilterTaste={setFilterTaste}
@@ -95,9 +97,11 @@ export default function Store() {
                             filterOrigin={filterOrigin}
                             filterTaste={filterTaste}
                             filterBrand={filterBrand}
+                            activeFilter={activeFilter}
+
 
                         />
-                        <div onClick={handleClearFilters} className="text-sm cursor-pointer mt-5">
+                        <div onClick={handleClearFilters} className="text-sm px-2 cursor-pointer">
                             Limpiar Filtros
                         </div>
                     </div>

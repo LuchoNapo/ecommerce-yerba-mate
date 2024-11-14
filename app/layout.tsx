@@ -27,8 +27,7 @@ export default function RootLayout({
       <body className={urbanist.className} >
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="light"
           disableTransitionOnChange
         >
           <NextTopLoader
