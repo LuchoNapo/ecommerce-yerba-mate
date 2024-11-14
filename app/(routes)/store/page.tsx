@@ -106,7 +106,7 @@ export default function Store() {
                     </div>
                 )}
                 <div className="flex flex-col w-full ">
-                    <div className="grid py-5 lg:grid-cols-3 grid-cols-2 gap-3 ">
+                    <div className="grid py-5 lg:grid-cols-3 grid-cols-2 gap-3">
                         {loading && (
                             <SkeletonSchema grid={isMobile ? 2 : 6} class="w-[160px]" />
                         )}

@@ -19,7 +19,7 @@ interface FilterProps {
     filterOrigin: string;
 }
 
-const FilterMenu = ({ isOpen, setFilterExpand, setFilterOrigin, filteredProduct, setFilterTaste, filterTaste, filterOrigin, setFilterBrand, setFilterWeight, setCurrentPage, filterBrand, filterWeight}: FilterProps) => {
+const FilterMenu = ({ isOpen, setFilterExpand, setFilterOrigin, filteredProduct, setFilterTaste, filterTaste, filterOrigin, setFilterBrand, setFilterWeight, setCurrentPage, filterBrand, filterWeight }: FilterProps) => {
     const [, setSelectedOrigin] = useState("");
     const handleClearFilters = () => {
         setSelectedOrigin("");
@@ -60,6 +60,7 @@ const FilterMenu = ({ isOpen, setFilterExpand, setFilterOrigin, filteredProduct,
                                 filterOrigin={filterOrigin}
                                 filterTaste={filterTaste}
                                 filterBrand={filterBrand}
+
                             />
                         </div>
                     </div>

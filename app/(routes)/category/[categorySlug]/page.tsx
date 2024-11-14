@@ -9,12 +9,13 @@ import { useParams } from "next/navigation";
 
 import { ResponseType } from "@/types/response";
 import { ProductType } from "@/types/product";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import ProductCard from "@/components/ProductCard";
 import FilterMenu from "@/components/Filters/FilterMenu";
 import useIsMobile from "@/hooks/useIsMobile";
 import { Skeleton } from "@/components/ui/skeleton";
+import { PaginationSection } from "@/components/PaginationSection";
 
 export default function Page() {
     const params = useParams()
@@ -22,23 +23,47 @@ export default function Page() {
     const { result, loading }: ResponseType = useGetCategoryProduct(categorySlug)
     const [filterOrigin, setFilterOrigin] = useState("");
     const [filterTaste, setFilterTaste] = useState("");
+    const [filterBrand, setFilterBrand] = useState("");
+    const [filterWeight, setFilterWeight] = useState("");
     const [filterExpand, setFilterExpand] = useState(false);
-    const isMobile = useIsMobile();
+    const [currentPage, setCurrentPage] = useState(1);
+    const [itemsPerPage] = useState(6);
 
+    const isMobile = useIsMobile();
     const filteredProduct = result && !loading && (
         result.filter((product: ProductType) => {
             const matchesOrigin = filterOrigin === "" || product.origin === filterOrigin;
             const matchesTaste = filterTaste === "" || product.taste === filterTaste;
-            return matchesOrigin && matchesTaste;
+            const matchesBrand = filterBrand === "" || product.brand === filterBrand;
+            const matchesWeight = filterWeight === "" || product.weight === filterWeight;
+
+            return matchesOrigin && matchesTaste && matchesBrand && matchesWeight;
         })
     );
+
+    const lastItemIndex = currentPage * itemsPerPage;
+    const firstItemIndex = lastItemIndex - itemsPerPage;
+    const currentItems = filteredProduct?.slice(firstItemIndex, lastItemIndex);
 
     const handleClearFilters = () => {
         setFilterOrigin("");
         setFilterTaste("");
         setFilterExpand(false);
         setFilterTaste("");
+        setFilterBrand("");
+        setFilterWeight("");
     };
+
+    useEffect(() => {
+        if (filterExpand) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "auto";
+        }
+        return () => {
+            document.body.style.overflow = "auto";
+        };
+    }, [filterExpand])
 
     return (
         <div className="max-w-6xl py-4 mx-auto sm:py-16 sm:px-14">
@@ -55,41 +80,63 @@ export default function Page() {
             ></div>
             <div className="sm:flex">
                 {isMobile && result !== null ? (
-                    <FilterMenu 
-                    isOpen={filterExpand}
-                    setFilterExpand={setFilterExpand}
-                    setFilterOrigin={setFilterOrigin}
-                    setFilterTaste={setFilterTaste}
-                    filterTaste={filterTaste}
-                    filterOrigin={filterOrigin}
-                    filteredProduct={filteredProduct}>
-                        <h3 className="font-castor text-xl tracking-wider">
-                            {result[0].category.categoryName}
-                        </h3>
+                    <FilterMenu
+                        isOpen={filterExpand}
+                        setFilterExpand={setFilterExpand}
+                        setFilterOrigin={setFilterOrigin}
+                        setFilterTaste={setFilterTaste}
+                        setFilterBrand={setFilterBrand}
+                        setFilterWeight={setFilterWeight}
+                        setCurrentPage={setCurrentPage}
+                        filterWeight={filterWeight}
+                        filteredProduct={filteredProduct}
+                        filterOrigin={filterOrigin}
+                        filterTaste={filterTaste}
+                        filterBrand={filterBrand} >
                     </FilterMenu>
                 ) : (
-                    <div className="flex flex-col pl-5 gap-2 items-start">
-                        <FiltersControlsCategory setFilterOrigin={setFilterOrigin} setFilterTaste={setFilterTaste} filterOrigin={filterOrigin} filterTaste={filterTaste} />
+                    <div className="flex flex-col pl-5 gap-5 items-start w-2/5">
+                        <FiltersControlsCategory
+                            setFilterOrigin={setFilterOrigin}
+                            setFilterTaste={setFilterTaste}
+                            setFilterBrand={setFilterBrand}
+                            setFilterWeight={setFilterWeight}
+                            setCurrentPage={setCurrentPage}
+                            filterWeight={filterWeight}
+                            filterOrigin={filterOrigin}
+                            filterTaste={filterTaste}
+                            filterBrand={filterBrand}
+
+                        />
                         <div onClick={handleClearFilters} className="text-sm cursor-pointer">
                             Limpiar Filtros
                         </div>
                     </div>
-                    
-                )}
-                <div className="grid mt-8 xl:grid-cols-3 lg:grid-cols-3 grid-cols-2 w-full gap-2 sm:px-0 px-5">
-                    {loading && (
-                        <SkeletonSchema grid={isMobile ? 2 : 9} class="w-[160px]" />
-                    )}
-                    {filteredProduct !== null && !loading && (
-                        filteredProduct.map((product: ProductType) => (
-                            <ProductCard key={product.id} product={product} />
-                        ))
 
-                    )}
-                    {filteredProduct !== null && !loading && filteredProduct.length == 0 && (
-                        <p>No hay productos para mostrar</p>
-                    )}
+                )}
+                <div className="flex flex-col w-full ">
+                    <div className="grid py-5 lg:grid-cols-3 grid-cols-2 gap-3">
+                        {loading && (
+                            <SkeletonSchema grid={isMobile ? 2 : 9} class="w-[160px]" />
+                        )}
+                        {filteredProduct !== null && !loading && (
+                            currentItems.map((product: ProductType) => (
+                                <ProductCard key={product.id} product={product} />
+                            ))
+
+                        )}
+                        {filteredProduct !== null && !loading && filteredProduct.length == 0 && (
+                            <p>No hay productos para mostrar</p>
+                        )}
+                    </div>
+                    <PaginationSection
+                        totalItems={filteredProduct?.length}
+                        itemsPerPage={itemsPerPage}
+                        currentPage={currentPage}
+                        setCurrentPage={setCurrentPage}
+                    />
                 </div>
+
             </div>
         </div>
     )
