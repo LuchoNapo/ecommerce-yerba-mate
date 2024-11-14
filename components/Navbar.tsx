@@ -7,16 +7,18 @@ import ItemsMenuMobile from "./ItemsMenuMobile";
 import ToggleTheme from "./ToggleTheme"
 import { useCart } from "@/hooks/useCart";
 import { useLovedItem } from "@/hooks/useLovedProducts";
+import { useTheme } from "next-themes";
 
 const Navbar = () => {
     const router = useRouter();
     const cart = useCart();
     const { lovedItems } = useLovedItem();
+    const { theme } = useTheme();
 
     return (
         <div className="flex items-end justify-between p-4 mx-auto cursor-pointer sm:max-w-4xl md:max-w-6xl md:px-10">
-            <div className="flex py-1 md:py-2 flex-col gap-1 items-center select-none" onClick={() => router.push("/")}>
-                <img src="/logo-mate.svg" alt="logo" width={25} height={25} />
+            <div className="flex py-1 md:py-2 flex-col items-center select-none" onClick={() => router.push("/")}>
+                <img src={theme === "dark" ? "/mate-logo-dark.png" : "/mate-logo.png"} alt="logo" width={22} height={22} />
                 <h1 className="text-3xl font-castor">
                     Mateina
                 </h1>
