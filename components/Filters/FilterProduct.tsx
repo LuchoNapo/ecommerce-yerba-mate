@@ -13,8 +13,8 @@ type FilterProps = {
 type AttributeKey = keyof ResultFilterType["schema"]["attributes"];
 
 const labelMap: { [key: string]: string } = {
-    one_kg: "1Kg",
-    half_kg: "500g", 
+    one_kg: "1 kg",
+    half_kg: "1/2 kg", 
 };
 const attributeLabelMap: { [key in AttributeKey]: string } = {
     taste: "Sabor",

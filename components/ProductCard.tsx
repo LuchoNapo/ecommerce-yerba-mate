@@ -10,7 +10,6 @@ import IconButton from "@/components/IconButton";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import { useCart } from "@/hooks/useCart";
 import Badge from "@/components/Badge";
-import { Separator } from "./ui/separator";
 
 type ProductCardProps = {
     product: ProductType
@@ -25,14 +24,14 @@ const ProductCard = (props: ProductCardProps) => {
     return (
         <Link
             href={`/product/${product.slug}`}
-            className="relative p-1.5 transition-all duration-100 rounded-sm border dark:bg-[#0D0B0A] bg-stone-50 h-[350px]">
+            className="relative p-1.5 transition-all duration-100 rounded-sm border dark:bg-[#0D0B0A] bg-stone-50  ">
             <Carousel
                 opts={
                     {
                         align: "start"
                     }
                 }
-                className="w-full h-[190px] max-w-sm bg-stone-200 dark:bg-stone-900 rounded-sm"
+                className="w-full h-[165px] sm:h-[190px] max-w-sm bg-stone-200 dark:bg-stone-900 rounded-sm"
             >
                 <CarouselContent className="h-full">
                     {
@@ -42,7 +41,7 @@ const ProductCard = (props: ProductCardProps) => {
                                     <img
                                         src={`${image.url}`}
                                         alt={product.productName}
-                                        className="rounded-xl h-[185px] object-contain"
+                                        className="rounded-xl h-[160px] sm:h-[185px] object-contain"
                                     />
                                     <div className="absolute w-full px-6 transition duration-200 opacity-0 group-hover:opacity-100 bottom-5">
                                         <div className="flex justify-center gap-x-6">
@@ -68,7 +67,7 @@ const ProductCard = (props: ProductCardProps) => {
             <div className="flex flex-col gap-1.5 h-1/5 p-0">
                 <p className="font-bold text-center mt-2 text-lg">{formatPrice(product.price)}</p>
                 <Badge product={product} class={"justify-center sm:text-sm text-[12px] pb-1"} />
-                <p className="md:text-xl text-lg text-center">{product.productName}</p>
+                <p className="md:text-xl text-lg text-center text-elipsis">{product.productName}</p>
             </div>
         </Link>
     );

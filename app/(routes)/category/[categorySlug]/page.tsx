@@ -78,7 +78,7 @@ export default function Page() {
                     }`}
                 onClick={() => setFilterExpand(false)}
             ></div>
-            <div className="sm:flex">
+            <div className="md:flex md:justify-center">
                 {isMobile && result !== null ? (
                     <FilterMenu
                         isOpen={filterExpand}
@@ -115,7 +115,7 @@ export default function Page() {
 
                 )}
                 <div className="flex flex-col w-full ">
-                    <div className="grid py-5 lg:grid-cols-3 grid-cols-2 gap-3">
+                    <div className="grid py-5 lg:grid-cols-3 grid-cols-2 gap-3 mx-3">
                         {loading && (
                             <SkeletonSchema grid={isMobile ? 2 : 9} class="w-[160px]" />
                         )}

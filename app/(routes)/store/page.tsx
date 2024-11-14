@@ -9,7 +9,6 @@ import { useGetAllProducts } from "@/api/getAllProducts"
 import ProductCard from "@/components/ProductCard"
 import { ResponseType } from "@/types/response"
 import FilterMenu from "@/components/Filters/FilterMenu"
-import CategorySelect from "./components/CategorySelect"
 import useIsMobile from "@/hooks/useIsMobile"
 import { PaginationSection } from "@/components/PaginationSection"
 
@@ -64,11 +63,10 @@ export default function Store() {
             <h3 className="px-6 text-2xl sm:text-3xl pb-4 font-castor">Todas las yerbas</h3>
             <Separator />
             <div
-                className={`fixed inset-0 z-10 bg-black/80 transition-opacity duration-500 ease-in-out ${filterExpand ? "opacity-100 visible" : "opacity-0 invisible"
-                    }`}
+                className={`fixed inset-0 z-10 bg-black/80 transition-opacity duration-500 ease-in-out ${filterExpand ? "opacity-100 visible" : "opacity-0 invisible"}`}
                 onClick={() => setFilterExpand(false)}
             ></div>
-            <div className="sm:flex sm:justify-center">
+            <div className="md:flex md:justify-center">
                 {isMobile ? (
                     <FilterMenu
                         isOpen={filterExpand}
@@ -84,10 +82,9 @@ export default function Store() {
                         filterTaste={filterTaste}
                         filterBrand={filterBrand}
                     />
-                  
+
                 ) : (
                     <div className="flex flex-col pl-5 gap-5 items-start w-2/5">
-                        <CategorySelect />
                         <FiltersControlsCategory
                             setFilterOrigin={setFilterOrigin}
                             setFilterTaste={setFilterTaste}
@@ -106,7 +103,7 @@ export default function Store() {
                     </div>
                 )}
                 <div className="flex flex-col w-full ">
-                    <div className="grid py-5 lg:grid-cols-3 grid-cols-2 gap-3">
+                    <div className="grid py-5 lg:grid-cols-3 grid-cols-2 gap-3 sm:mx-0 mx-3">
                         {loading && (
                             <SkeletonSchema grid={isMobile ? 2 : 6} class="w-[160px]" />
                         )}
@@ -114,7 +111,6 @@ export default function Store() {
                             currentItems.map((product: ProductType) => (
                                 <ProductCard key={product.id} product={product} />
                             ))
-
                         )}
                         {filteredProduct !== null && !loading && filteredProduct.length == 0 && (
                             <p>No hay productos para mostrar</p>
