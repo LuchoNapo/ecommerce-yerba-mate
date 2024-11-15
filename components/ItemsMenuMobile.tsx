@@ -1,20 +1,14 @@
-
-import { Menu } from "lucide-react";
-import {  Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import Link from "next/link";
 
 const ItemsMenuMobile = () => {
-    return ( 
-        <Popover>
-            <PopoverTrigger>
-                <Menu />
-            </PopoverTrigger>
-            <PopoverContent>
-                <Link href="/category/con-palo" className="block">Con palo</Link>
-                <Link href="/category/sin-palo" className="block">Sin palo</Link>
-            </PopoverContent>
-        </Popover>
-     );
+    return (
+        <div className="flex justify-center items-center py-2 font-semibold dark:bg-neutral-900 gap-2 w-full shadow-bottom dark:shadow-bottom-dark">
+            <Link href="/store" className="block">Tienda</Link>
+            <Link href="/about" className="block border-l border-gray-300 dark:border-neutral-700 pl-2">Sobre nosotros</Link>
+            <Link href="/offers" className="block border-l border-gray-300 dark:border-neutral-700 pl-2">Ofertas</Link>
+            <Link href="/loved-products" className="block border-l border-gray-300 dark:border-neutral-700 pl-2">Favoritos</Link>
+        </div>
+    );
 }
- 
+
 export default ItemsMenuMobile;

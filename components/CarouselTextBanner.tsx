@@ -30,7 +30,7 @@ export const dataCarouselTop = [
 const CarouselTextBanner = () => {
 
     return (
-        <div className="bg-gray-100 dark:bg-neutral-900">
+        <div className="bg-gray-100 dark:bg-neutral-800">
             <Carousel className="w-full max-w-4xl mx-auto" plugins={[
                 Autoplay({
                     delay: 2500
