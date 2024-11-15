@@ -61,7 +61,7 @@ export default function Store() {
     }, [filterExpand])
 
     return (
-        <div className="max-w-6xl py-10 mx-auto sm:py-16 sm:pb-28 sm:px-14">
+        <div className="max-w-6xl mx-auto sm:py-16 sm:pb-28 sm:px-14">
             <h3 className="px-6 text-2xl sm:text-3xl pb-4 font-castor">Todas las yerbas</h3>
             <Separator />
             <div
