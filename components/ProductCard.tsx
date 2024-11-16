@@ -18,8 +18,7 @@ type ProductCardProps = {
 const ProductCard = (props: ProductCardProps) => {
     const { product } = props;
     const router = useRouter()
-    const { addItem } = useCart()
-
+    const { addItem } = useCart()    
 
     return (
         <Link
@@ -66,7 +65,7 @@ const ProductCard = (props: ProductCardProps) => {
         
             <div className="flex flex-col gap-1.5 h-1/5 p-0">
                 <p className="font-bold text-center mt-2 text-lg">{formatPrice(product.price)}</p>
-                <Badge product={product} class={"justify-center sm:text-sm text-[12px] pb-1"} />
+                {product.category.categoryName ==="Yerbas" && <Badge product={product} class={"justify-center sm:text-sm text-[12px] pb-1"} />}
                 <p className="md:text-xl text-lg text-center text-elipsis">{product.productName}</p>
             </div>
         </Link>

@@ -12,7 +12,7 @@ export type ResultFilterType = {
             taste: {
                 enum: string[];
             },
-            origin: {
+            typeWeed: {
                 enum: string[];
             },
             brand: {
@@ -21,6 +21,15 @@ export type ResultFilterType = {
             weight: {
                 enum: string[];
             },
+            material: {
+                enum: string[];
+            }
+            termoBrand:{
+                enum: string[];
+            }
+            typeOfStraw:{
+                enum: string[];
+            }
         }
     }
 }

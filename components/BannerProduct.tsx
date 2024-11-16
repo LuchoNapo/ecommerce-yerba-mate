@@ -4,7 +4,7 @@ import { buttonVariants } from "./ui/button";
 
 const BannerProduct = () => {
     return (
-        <div className="relative h-[350px] lg:h-[600px] bg-[url('/yerba-mate-bg.webp')] mt-6 bg-cover bg-center flex items-center justify-center">
+        <div className="relative h-[350px] lg:h-[600px] bg-[url('/mate-campamento.webp')] mt-6 bg-cover [background-position:50%_80%] flex items-center justify-center">
             <div className="absolute inset-0 bg-black/40"></div>
             <div className="mt-4 text-center relative z-10 text-white">
                 <p>Sumergete en una experiencia única</p>

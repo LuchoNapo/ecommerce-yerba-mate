@@ -21,7 +21,7 @@ const MenuList = () => {
     <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Sobre nosotros</NavigationMenuTrigger>
+          <NavigationMenuTrigger>Productos</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
               <li className="row-span-3">
@@ -31,46 +31,37 @@ const MenuList = () => {
                     href="/about"
                   >
                     <div className="mb-2 mt-4 text-lg font-medium">
-                      Mateina
+                      Yerba Mate
                     </div>
                     <p className="text-sm leading-tight text-muted-foreground">
-                      Sumérgete en el apasionante mundo de la Yerba Mate con nuestra web
+                      Disfruta del sabor auténtico de nuestra Yerba Mate, seleccionada para los más exigentes
                     </p>
                   </a>
                 </NavigationMenuLink>
               </li>
-              <ListItem href="/store" title="Tienda">
-                Accede a todas nuestra tienda y ver todos nuestros productos
+              <ListItem href="/store" title="Bombillas">
+                No existe el mate sin bombillas, descubre nuestras bombillas de alta calidad
               </ListItem>
-              <ListItem href="/offers" title="Ofertas">
-                Sección dedicada a promociones y descuentos especiales
+              <ListItem href="/offers" title="Mates">
+                Disfruta de la auténtica tradición con nuestros mates artesanales, ideales para cada ritual.
               </ListItem>
-              <ListItem href="/" title="Accesorios">
-                Productos complementarios como mates, bombillas, packs materos, etc
+              <ListItem href="/" title="Termos">
+                Mantén el agua a la temperatura ideal con nuestros termos de alta calidad y diseño único.
               </ListItem>
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Yerbas Mate</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-              {components.map((component) => (
-                <ListItem
-                  key={component.title}
-                  title={component.title}
-                  href={component.href}
-                >
-                  {component.description}
-                </ListItem>
-              ))}
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <Link href="/" legacyBehavior passHref>
+          <Link href="/offers" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Accesorios
+              Ofertas
+            </NavigationMenuLink>
+          </Link>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <Link href="/about" legacyBehavior passHref>
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              Sobre nosotros
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
@@ -80,24 +71,6 @@ const MenuList = () => {
 }
 
 export default MenuList;
-
-
-const components: { title: string; href: string; description: string }[] = [
-    {
-      title: "Yerba sin palo",
-      href: "/category/sin-palo",
-      description:
-        "Una variedad pura compuesta solo de hojas trituradas, sin tallos. Ofrece un sabor más fuerte e intenso que la yerba tradicional.",
-    },
-    {
-      title: "Yerba con palo",
-      href: "/category/con-palo",
-      description:
-        "Incluye hojas trituradas y pequeños tallos, ofreciendo un sabor más suave y equilibrado. Es ideal para quienes prefieren una infusión menos intensa.",
-    },
-  
-  ]
-
 
 const ListItem = React.forwardRef<
   React.ElementRef<"a">,

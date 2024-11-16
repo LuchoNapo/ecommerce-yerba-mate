@@ -6,10 +6,13 @@ export type ProductType = {
     active: boolean,
     isFeatured: boolean,
     taste: string,
-    origin: string,
+    typeWeed: string,
     price: number,
     brand: string,
     weight: string,
+    material: string,
+    termoBrand: string,
+    typeOfStraw: string,
     images: {
         id: number,
         url: string

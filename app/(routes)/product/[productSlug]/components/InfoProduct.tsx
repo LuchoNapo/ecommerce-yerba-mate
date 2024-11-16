@@ -13,15 +13,13 @@ export type InfoProductProps = {
 const InfoProduct = (props: InfoProductProps) => {
     const { addItem } = useCart()
     const { addLovedItem} = useLovedItem()
-    const { product } = props;
-
+    const { product } = props;    
 
     return (
         <div className="w-full px-5 sm:w-3/5 text-balance">
             <div className="justify-center items-center mx-5 mb-3 flex gap-5 md:flex-row flex-col">
                 <h1 className="text-2xl">{product.productName}</h1>
-                <Badge product={product} class="justify-start text-xs" />
-
+                {product.category.categoryName ==="Yerbas" && <Badge product={product} class={"justify-center sm:text-sm text-[12px] pb-1"} />}
             </div>
             <Separator className="my-4" />
             <p>{product.description}</p>

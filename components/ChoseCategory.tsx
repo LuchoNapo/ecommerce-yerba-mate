@@ -10,25 +10,22 @@ const ChoseCategory = () => {
     const { result, loading }: ResponseType = useGetCategories();
 
     return (
-
-        <div className="max-w-6xl py-4 mx-auto sm:py-16 sm:px-14 px-2">
-            <h3 className="px-6 pb-4 sm:text-3xl text-2xl text-nowrap sm:pb-8">Elegí tu categoria favorita</h3>
-            <div className="flex gap-5">
+        <div id="chooseCategory" className="mx-auto sm:py-16 sm:px-0 ">
+            <h3 className="max-w-6xl py-4 mx-auto sm:py-16 sm:px-14 px-2 pb-4 sm:text-3xl text-2xl text-nowrap sm:pb-8">Elegí tu categoria favorita</h3>
+            <div className="sm:flex  w-full sm:flex-row grid grid-cols-2">
                 {!loading && result !== undefined && (
                     result.map((category: CategoryType) => (
-                        <Link key={category.id} href={`/category/${category.slug}`} className="relative w-full overflow-hidden bg-no-repeat bg-cover rounded-lg">
+                        <Link key={category.id} href={`/category/${category.slug}`} className="relative w-full overflow-hidden bg-no-repeat bg-cover sm:h-[450px] h-[250px]">
                             <img
                                 src={`${category.mainImage[0].url}`}
                                 alt={category.categoryName}
-                                className="w-full h-full transition object-cover  duration-300 ease-in-out rounded-lg hover:scale-110"
+                                className="w-full h-full transition object-cover duration-300 ease-in-out hover:scale-110"
                             />
                             <p className="absolute w-full py-2 textl-lg text-white text-center bottom-5 backdrop-blur-lg font-bold">{category.categoryName}</p>
                         </Link>
-
                     ))
                 )}
             </div>
-
         </div>
     );
 }

@@ -18,14 +18,18 @@ const labelMap: { [key: string]: string } = {
 };
 const attributeLabelMap: { [key in AttributeKey]: string } = {
     taste: "Sabor",
-    origin: "Origen",
+    typeWeed: "Con o Sin Palo",
     brand: "Marca",
     weight: "Peso",
+    material: "Material",
+    termoBrand: "Marca",
+    typeOfStraw: "Tipo de Bombilla"
 };
 const FilterProduct = ({ filterProducts, setFilterProducts, attributeKey, setCurrentPage, isActive }: FilterProps) => {
     const { result }: FilterType = useGetProductsField()
     const attributeEnum = result?.schema.attributes[attributeKey]?.enum;
     const [highlight, setHighlight] = useState(false);
+    
 
     useEffect(() => {
         if (isActive) {
@@ -63,7 +67,7 @@ const FilterProduct = ({ filterProducts, setFilterProducts, attributeKey, setCur
                                             py-1 px-2 rounded-sm 
                                             transition duration-300 ease-in-out 
                                             hover:text-black/100 hover:bg-gray-100 hover:dark:text-white/100 hover:dark:bg-stone-900
-                                            ${filterProducts === product ? "bg-gray-200 text-black/100 dark:bg-stone-900 dark:text-white/100" : ""}`}
+                                            ${filterProducts === product ? "bg-gray-200 !text-black/100 dark:!bg-stone-900 dark:!text-white/100" : ""}`}
                                     >
                                         {labelMap[product] || product}
                                     </label>

@@ -21,40 +21,52 @@ export default function Page() {
     const params = useParams()
     const { categorySlug } = params
     const { result, loading }: ResponseType = useGetCategoryProduct(categorySlug)
-    const [filterOrigin, setFilterOrigin] = useState("");
+
+    //Filters
+    const [filterTypeWeed, setFilterTypeWeed] = useState("");
     const [filterTaste, setFilterTaste] = useState("");
     const [filterBrand, setFilterBrand] = useState("");
     const [filterWeight, setFilterWeight] = useState("");
-    const [filterExpand, setFilterExpand] = useState(false);
-    const [activeFilter] = useState<string>("origin");
+    const [filterMaterial, setFilterMaterial] = useState("");
+    const [filterTermoBrand, setFilterTermoBrand] = useState("");
+    const [filterTypeStraw, setFilterTypeStraw] = useState("");
 
+    const [filterExpand, setFilterExpand] = useState(false);
+    const [activeFilter] = useState<string>("taste");
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(6);
-    
-
     const isMobile = useIsMobile();
+
     const filteredProduct = result && !loading && (
         result.filter((product: ProductType) => {
-            const matchesOrigin = filterOrigin === "" || product.origin === filterOrigin;
+            const matchesTypeWeed = filterTypeWeed === "" || product.typeWeed === filterTypeWeed;
             const matchesTaste = filterTaste === "" || product.taste === filterTaste;
             const matchesBrand = filterBrand === "" || product.brand === filterBrand;
             const matchesWeight = filterWeight === "" || product.weight === filterWeight;
+            const matchesMaterial = filterMaterial === "" || product.material === filterMaterial;
+            const matchesTermoBrand = filterTermoBrand === "" || product.termoBrand === filterTermoBrand;
+            const matchesTypeStraw = filterTypeStraw === "" || product.typeOfStraw === filterTypeStraw;
 
-            return matchesOrigin && matchesTaste && matchesBrand && matchesWeight;
+            return matchesTypeWeed && matchesTaste && matchesBrand && matchesWeight && matchesMaterial && matchesTermoBrand && matchesTypeStraw;
         })
     );
 
+    const currentCategory = result?.[0].category.categoryName;
     const lastItemIndex = currentPage * itemsPerPage;
     const firstItemIndex = lastItemIndex - itemsPerPage;
     const currentItems = filteredProduct?.slice(firstItemIndex, lastItemIndex);
 
+
     const handleClearFilters = () => {
-        setFilterOrigin("");
+        setFilterTypeWeed("");
         setFilterTaste("");
         setFilterExpand(false);
         setFilterTaste("");
         setFilterBrand("");
         setFilterWeight("");
+        setFilterTypeStraw("");
+        setFilterTermoBrand("");
+        setFilterMaterial("");
     };
 
     useEffect(() => {
@@ -69,9 +81,9 @@ export default function Page() {
     }, [filterExpand])
 
     return (
-        <div className="max-w-6xl py-4 mx-auto sm:py-16 sm:px-14">
-            {result !== null && !loading ? (
-                <h1 className="text-3xl font-medium px-3">Yerba Mate {result[0].category.categoryName}</h1>
+        <div className="max-w-6xl py-4 mx-auto sm:py-10 sm:px-14">
+            {result !== undefined && !loading ? (
+                <h1 className="text-3xl font-medium px-3 mb-3 font-castor tracking-widest">{result[0].category.categoryName}</h1>
             ) : (
                 <Skeleton className="h-10 w-3/4 sm:w-1/4 mb-2" />
             )}
@@ -82,35 +94,51 @@ export default function Page() {
                 onClick={() => setFilterExpand(false)}
             ></div>
             <div className="md:flex md:justify-center">
-                {isMobile && result !== null ? (
+                {isMobile && result !== undefined ? (
                     <FilterMenu
                         isOpen={filterExpand}
                         setFilterExpand={setFilterExpand}
-                        setFilterOrigin={setFilterOrigin}
+                        setFilterTypeWeed={setFilterTypeWeed}
                         setFilterTaste={setFilterTaste}
                         setFilterBrand={setFilterBrand}
                         setFilterWeight={setFilterWeight}
                         setCurrentPage={setCurrentPage}
+                        setFilterTermoBrand={setFilterTermoBrand}
+                        setFilterMaterial={setFilterMaterial}
+                        setFilterTypeStraw={setFilterTypeStraw}
                         filterWeight={filterWeight}
                         filteredProduct={filteredProduct}
-                        filterOrigin={filterOrigin}
+                        filterTypeWeed={filterTypeWeed}
                         filterTaste={filterTaste}
-                        filterBrand={filterBrand} >
+                        filterBrand={filterBrand}
+                        filterTermoBrand={filterTermoBrand}
+                        filterMaterial={filterMaterial}
+                        filterTypeStraw={filterTypeStraw}
+                        currentCategory={currentCategory}
+
+                    >
+
                     </FilterMenu>
                 ) : (
                     <div className="flex flex-col pl-5 gap-5 items-start w-2/5">
                         <FiltersControlsCategory
-                            setFilterOrigin={setFilterOrigin}
+                            setFilterTypeWeed={setFilterTypeWeed}
                             setFilterTaste={setFilterTaste}
                             setFilterBrand={setFilterBrand}
                             setFilterWeight={setFilterWeight}
+                            setFilterMaterial={setFilterMaterial}
+                            setFilterTermoBrand={setFilterTermoBrand}
+                            setFilterTypeStraw={setFilterTypeStraw}
                             setCurrentPage={setCurrentPage}
                             filterWeight={filterWeight}
-                            filterOrigin={filterOrigin}
+                            filterMaterial={filterMaterial}
+                            filterTypeWeed={filterTypeWeed}
                             filterTaste={filterTaste}
                             filterBrand={filterBrand}
+                            filterTermoBrand={filterTermoBrand}
+                            filterTypeStraw={filterTypeStraw}
                             activeFilter={activeFilter}
-
+                            currentCategory={currentCategory}
 
                         />
                         <div onClick={handleClearFilters} className="text-sm px-2 cursor-pointer">
@@ -124,7 +152,7 @@ export default function Page() {
                         {loading && (
                             <SkeletonSchema grid={isMobile ? 2 : 9} class="w-[160px]" />
                         )}
-                        {filteredProduct !== null && !loading && (
+                        {filteredProduct !== undefined && !loading && (
                             currentItems.map((product: ProductType) => (
                                 <ProductCard key={product.id} product={product} />
                             ))

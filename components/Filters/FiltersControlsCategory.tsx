@@ -1,37 +1,74 @@
 import FilterProduct from "./FilterProduct";
 
 type FiltersControlsCategoryProps = {
-    setFilterOrigin: (origin: string) => void;
-    setFilterTaste: (origin: string) => void;
-    setFilterBrand: (origin: string) => void;
-    setFilterWeight: (origin: string) => void;
+    setFilterTypeWeed: (typeWeed: string) => void;
+    setFilterTaste: (typeWeed: string) => void;
+    setFilterBrand: (typeWeed: string) => void;
+    setFilterWeight: (typeWeed: string) => void;
+    setFilterMaterial: (typeWeed: string) => void;
+    setFilterTermoBrand: (typeWeed: string) => void;
+    setFilterTypeStraw: (typeWeed: string) => void;
     setCurrentPage: (page: number) => void;
 
+
     filterTaste: string;
-    filterOrigin: string;
+    filterTypeWeed: string;
     filterBrand: string;
     filterWeight: string;
+    filterMaterial: string;
+    filterTermoBrand: string;
+    filterTypeStraw: string;
     activeFilter: string;
+    currentCategory: string;
 
 }
 const FiltersControlsCategory = ({
-    setFilterOrigin,
+    setFilterTypeWeed,
     setFilterTaste,
     setFilterBrand,
     setCurrentPage,
     setFilterWeight,
+    setFilterMaterial,
+    setFilterTermoBrand,
+    setFilterTypeStraw,
     filterWeight,
     filterTaste,
-    filterOrigin,
+    filterTypeWeed,
     filterBrand,
+    filterMaterial,
+    filterTypeStraw,
+    filterTermoBrand,
     activeFilter,
+
+    currentCategory
 }: FiltersControlsCategoryProps) => {
     return (
         <div className="sm:mt-5 flex flex-col w-fit sm:items-start md:mb-0 mb-12 ">
-            <FilterProduct setFilterProducts={setFilterOrigin} filterProducts={filterOrigin} setCurrentPage={setCurrentPage} attributeKey="origin" isActive={activeFilter === "origin"} />
-            <FilterProduct setFilterProducts={setFilterTaste} filterProducts={filterTaste} setCurrentPage={setCurrentPage} attributeKey="taste" isActive={activeFilter === "taste"} />
-            <FilterProduct setFilterProducts={setFilterWeight} filterProducts={filterWeight} setCurrentPage={setCurrentPage} attributeKey="weight" isActive={activeFilter === "weight"} />
-            <FilterProduct setFilterProducts={setFilterBrand} filterProducts={filterBrand} setCurrentPage={setCurrentPage} attributeKey="brand" isActive={activeFilter === "brand"} />
+            {currentCategory === "Yerbas" && (
+                <>
+                    <FilterProduct setFilterProducts={setFilterTaste} filterProducts={filterTaste} setCurrentPage={setCurrentPage} attributeKey="taste" isActive={activeFilter === "taste"} />
+                    <FilterProduct setFilterProducts={setFilterTypeWeed} filterProducts={filterTypeWeed} setCurrentPage={setCurrentPage} attributeKey="typeWeed" isActive={activeFilter === "typeWeed"} />
+                    <FilterProduct setFilterProducts={setFilterWeight} filterProducts={filterWeight} setCurrentPage={setCurrentPage} attributeKey="weight" isActive={activeFilter === "weight"} />
+                    <FilterProduct setFilterProducts={setFilterBrand} filterProducts={filterBrand} setCurrentPage={setCurrentPage} attributeKey="brand" isActive={activeFilter === "brand"} />
+                </>
+            )}
+            {currentCategory === "Mates" && (
+                <>
+                    <FilterProduct setFilterProducts={setFilterMaterial} filterProducts={filterMaterial} setCurrentPage={setCurrentPage} attributeKey="material" isActive={activeFilter === "material"} />
+                </>
+            )}
+                {currentCategory === "Termos" && (
+                <>
+                    <FilterProduct setFilterProducts={setFilterTermoBrand} filterProducts={filterTermoBrand} setCurrentPage={setCurrentPage} attributeKey="termoBrand" isActive={activeFilter === "termoBrand"} />
+                </>
+            )}
+            {
+                currentCategory === "Bombillas" && (
+                    <>
+                        <FilterProduct setFilterProducts={setFilterTypeStraw} filterProducts={filterTypeStraw} setCurrentPage={setCurrentPage} attributeKey="typeOfStraw" isActive={activeFilter === "typeOfStraw"} />
+                    </>
+                )
+            }
         </div>
     );
 }
