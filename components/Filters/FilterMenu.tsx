@@ -26,7 +26,7 @@ interface FilterProps {
 
 const FilterMenu = ({ isOpen, setFilterTypeStraw, setFilterExpand, setFilterTypeWeed, setFilterTaste, setFilterBrand, setFilterWeight, setFilterMaterial, setFilterTermoBrand, setCurrentPage, filteredProduct, filterTaste, filterTypeWeed, filterBrand, filterWeight, filterMaterial, filterTermoBrand, filterTypeStraw, currentCategory }: FilterProps) => {
     const [, setSelectedtypeWeed] = useState("");
-    const [activeFilter, setActiveFilter] = useState<string>("typeWeed");
+    const [activeFilter, setActiveFilter] = useState<string>("taste");
 
     const handleClearFilters = () => {
         setSelectedtypeWeed("");
@@ -51,10 +51,10 @@ const FilterMenu = ({ isOpen, setFilterTypeStraw, setFilterExpand, setFilterType
                         <div className="flex flex-col items-center justify-start w-28 font-castor fixed h-full dark:bg-stone-900 bg-gray-100">
                             {currentCategory === "Yerbas" && (
                                 <>
-                                    <a href="#typeWeed" className={`border-b-2 w-full text-center  py-3 ${activeFilter === "typeWeed" ? "dark:bg-[#090706] bg-white" : ""}`} onClick={() => setActiveFilter("typeWeed")}
-                                    >Origen</a>
                                     <a href="#taste" className={`border-b-2 w-full text-center py-3 ${activeFilter === "taste" ? "dark:bg-[#090706] bg-white" : ""}`} onClick={() => setActiveFilter("taste")}
                                     >Sabor</a>
+                                    <a href="#typeWeed" className={`border-b-2 w-full text-center  py-3 ${activeFilter === "typeWeed" ? "dark:bg-[#090706] bg-white" : ""}`} onClick={() => setActiveFilter("typeWeed")}
+                                    >Con o Sin Palo</a>
                                     <a href="#weight" className={`border-b-2 w-full text-center py-3 ${activeFilter === "weight" ? "dark:bg-[#090706] bg-white" : ""}`} onClick={() => setActiveFilter("weight")}
                                     >Peso</a>
                                     <a href="#brand" className={`border-b-2 w-full text-center py-3 ${activeFilter === "brand" ? "dark:bg-[#090706] bg-white" : ""}`} onClick={() => setActiveFilter("brand")}
