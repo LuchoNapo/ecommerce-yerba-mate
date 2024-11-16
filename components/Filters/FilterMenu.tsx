@@ -13,6 +13,7 @@ interface FilterProps {
     setFilterTermoBrand: (taste: string) => void;
     setFilterMaterial: (taste: string) => void;
     setFilterTypeStraw: (taste: string) => void;
+    setActiveFilter: (taste: string) => void;
     filteredProduct: ProductType[] | null;
     filterTaste: string;
     filterTermoBrand: string;
@@ -22,11 +23,11 @@ interface FilterProps {
     filterTypeWeed: string;
     filterTypeStraw: string;
     currentCategory: string;
+    activeFilter: string;
 }
 
-const FilterMenu = ({ isOpen, setFilterTypeStraw, setFilterExpand, setFilterTypeWeed, setFilterTaste, setFilterBrand, setFilterWeight, setFilterMaterial, setFilterTermoBrand, setCurrentPage, filteredProduct, filterTaste, filterTypeWeed, filterBrand, filterWeight, filterMaterial, filterTermoBrand, filterTypeStraw, currentCategory }: FilterProps) => {
+const FilterMenu = ({ isOpen, setFilterTypeStraw, setFilterExpand, setFilterTypeWeed, setFilterTaste, setActiveFilter ,setFilterBrand, setFilterWeight, setFilterMaterial, setFilterTermoBrand, setCurrentPage, filteredProduct, filterTaste, filterTypeWeed, filterBrand, filterWeight, filterMaterial, filterTermoBrand, filterTypeStraw, currentCategory, activeFilter }: FilterProps) => {
     const [, setSelectedtypeWeed] = useState("");
-    const [activeFilter, setActiveFilter] = useState<string>("taste");
 
     const handleClearFilters = () => {
         setSelectedtypeWeed("");
@@ -35,6 +36,9 @@ const FilterMenu = ({ isOpen, setFilterTypeStraw, setFilterExpand, setFilterType
         setFilterTaste("");
         setFilterBrand("");
         setFilterWeight("");
+        setFilterMaterial("");
+        setFilterTermoBrand("");
+        setFilterTypeStraw("");
     };
 
     return (

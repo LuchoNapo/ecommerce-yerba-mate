@@ -4,6 +4,7 @@ import { useGetCategories } from "@/api/getCategories";
 import { CategoryType } from "@/types/category";
 import { ResponseType } from "@/types/response";
 import Link from "next/link";
+import SkeletonSchema from "./SkeletonSchema";
 
 
 const ChoseCategory = () => {
@@ -13,6 +14,9 @@ const ChoseCategory = () => {
         <div id="chooseCategory" className="mx-auto sm:py-16 sm:px-0 ">
             <h3 className="max-w-6xl py-4 mx-auto sm:py-16 sm:px-14 px-2 pb-4 sm:text-3xl text-2xl text-nowrap sm:pb-8">Elegí tu categoria favorita</h3>
             <div className="sm:flex  w-full sm:flex-row grid grid-cols-2">
+                {loading && (
+                    <SkeletonSchema grid={4} class="sm:h-[450px] h-[250px] w-[90%]" />
+                )}
                 {!loading && result !== undefined && (
                     result.map((category: CategoryType) => (
                         <Link key={category.id} href={`/category/${category.slug}`} className="relative w-full overflow-hidden bg-no-repeat bg-cover sm:h-[450px] h-[250px]">

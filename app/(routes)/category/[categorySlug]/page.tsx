@@ -32,7 +32,7 @@ export default function Page() {
     const [filterTypeStraw, setFilterTypeStraw] = useState("");
 
     const [filterExpand, setFilterExpand] = useState(false);
-    const [activeFilter] = useState<string>("taste");
+    const [activeFilter, setActiveFilter] = useState<string>("taste");
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(6);
     const isMobile = useIsMobile();
@@ -106,6 +106,7 @@ export default function Page() {
                         setFilterTermoBrand={setFilterTermoBrand}
                         setFilterMaterial={setFilterMaterial}
                         setFilterTypeStraw={setFilterTypeStraw}
+                        setActiveFilter={setActiveFilter}
                         filterWeight={filterWeight}
                         filteredProduct={filteredProduct}
                         filterTypeWeed={filterTypeWeed}
@@ -114,6 +115,7 @@ export default function Page() {
                         filterTermoBrand={filterTermoBrand}
                         filterMaterial={filterMaterial}
                         filterTypeStraw={filterTypeStraw}
+                        activeFilter={activeFilter}
                         currentCategory={currentCategory}
 
                     >
