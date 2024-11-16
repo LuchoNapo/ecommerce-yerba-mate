@@ -28,7 +28,7 @@ const MenuList = () => {
                 <NavigationMenuLink asChild>
                   <a
                     className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                    href="/about"
+                    href="/category/yerbas"
                   >
                     <div className="mb-2 mt-4 text-lg font-medium">
                       Yerba Mate
@@ -39,13 +39,13 @@ const MenuList = () => {
                   </a>
                 </NavigationMenuLink>
               </li>
-              <ListItem href="/store" title="Bombillas">
+              <ListItem href="/category/bombillas" title="Bombillas">
                 No existe el mate sin bombillas, descubre nuestras bombillas de alta calidad
               </ListItem>
-              <ListItem href="/offers" title="Mates">
+              <ListItem href="/category/mates" title="Mates">
                 Disfruta de la auténtica tradición con nuestros mates artesanales, ideales para cada ritual.
               </ListItem>
-              <ListItem href="/" title="Termos">
+              <ListItem href="/category/termos" title="Termos">
                 Mantén el agua a la temperatura ideal con nuestros termos de alta calidad y diseño único.
               </ListItem>
             </ul>
