@@ -41,7 +41,7 @@ const FilterProduct = ({ filterProducts, setFilterProducts, attributeKey, setCur
         }
     }, [isActive]);
     return (
-        <div id={attributeKey} className={`transition duration-500 sm:pl-0 pl-32 pb-3 ${highlight ? "dark:bg-stone-900/50 bg-gray-100" : ""}`}>
+        <div id={attributeKey} className={`transition duration-500 md:pl-0 pl-32 pb-3 ${highlight ? "dark:bg-stone-900/50 bg-gray-100" : ""}`}>
             {
                 result !== null && (
                     <>
