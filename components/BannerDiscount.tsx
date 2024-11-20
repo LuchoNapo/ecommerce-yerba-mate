@@ -4,16 +4,8 @@ import { buttonVariants } from "./ui/button";
 const BannerDiscount = () => {
     return (
         <div className="relative p-5 sm:p-20 text-center text-white">
-            <div
-                className="absolute inset-0 -z-10"
-                style={{
-                    backgroundImage: "url('/mate-parallax.webp')",
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    position: "fixed",
-                }}
-            ></div>
-            <div className="absolute inset-0 bg-black/50 -z-10"></div>
+            <div className="absolute inset-0 bg-cover bg-center bg-fixed" style={{ backgroundImage: "url('/mate-parallax.webp')" }}></div>
+            <div className="absolute inset-0 bg-black/50"></div>
             <div className="relative z-10">
                 <h2 className="uppercase font-black text-2xl">
                     Consigue hasta un -25%
