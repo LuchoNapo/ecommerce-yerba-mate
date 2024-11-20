@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { Expand, ShoppingCart } from "lucide-react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 
 import { formatPrice } from "@/lib/formatPrice";
 import { ProductType } from "@/types/product";
@@ -21,8 +20,7 @@ const ProductCard = (props: ProductCardProps) => {
     const { addItem } = useCart()    
 
     return (
-        <Link
-            href={`/product/${product.slug}`}
+        <div
             className="relative p-1.5 transition-all duration-100 rounded-sm border dark:bg-[#0D0B0A] bg-stone-50  ">
             <Carousel
                 opts={
@@ -68,7 +66,7 @@ const ProductCard = (props: ProductCardProps) => {
                 {product.category.categoryName ==="Yerbas" && <Badge product={product} class={"justify-center sm:text-sm text-[12px] pb-1"} />}
                 <p className="md:text-xl text-lg text-center text-elipsis">{product.productName}</p>
             </div>
-        </Link>
+        </div>
     );
 }
 
