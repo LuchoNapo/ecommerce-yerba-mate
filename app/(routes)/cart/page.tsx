@@ -22,10 +22,10 @@ export default function Page() {
             const res = await makePaymentRequest.post("/api/orders", {
                 products: items
             })
-            removeAll();
             await stripe?.redirectToCheckout({
                 sessionId: res.data.stripeSession.id
             })
+            removeAll();
             
         } catch (error) {
             console.log(error);
