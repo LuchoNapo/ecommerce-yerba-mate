@@ -1,17 +1,17 @@
 "use client"
-
-import { useGetProductBySlug } from "@/api/getProductBySlug"
 import { ResponseType } from "@/types/response"
 import { useParams } from "next/navigation"
 import SkeletonProduct from "./components/SkeletonProduct"
 import CarouselProduct from "./components/CarouselProduct"
 import InfoProduct from "./components/InfoProduct"
+import { useApi } from "@/api/useApi"
 
 
 export default function Page() {
     const params = useParams()
     const { productSlug } = params
-    const { result }: ResponseType = useGetProductBySlug(productSlug);
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/products?filters[slug][$eq]=${productSlug}&populate=*`;
+    const { result }: ResponseType = useApi({urlApi: url});
 
     if (result === null) {
         return <SkeletonProduct />

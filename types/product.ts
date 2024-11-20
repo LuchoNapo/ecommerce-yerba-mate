@@ -13,6 +13,7 @@ export type ProductType = {
     material: string,
     termoBrand: string,
     typeOfStraw: string,
+    quantity: number,
     images: {
         id: number,
         url: string

@@ -4,7 +4,6 @@ import { Separator } from "@/components/ui/separator";
 import FiltersControlsCategory from "../../../../components/Filters/FiltersControlsCategory";
 import SkeletonSchema from "@/components/SkeletonSchema";
 
-import { useGetCategoryProduct } from "@/api/getCategoryProduct"
 import { useParams } from "next/navigation";
 
 import { ResponseType } from "@/types/response";
@@ -16,12 +15,14 @@ import FilterMenu from "@/components/Filters/FilterMenu";
 import useIsMobile from "@/hooks/useIsMobile";
 import { Skeleton } from "@/components/ui/skeleton";
 import { PaginationSection } from "@/components/PaginationSection";
+import { useApi } from "@/api/useApi";
 
 export default function Page() {
     const params = useParams()
     const { categorySlug } = params
-    const { result, loading }: ResponseType = useGetCategoryProduct(categorySlug)
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/products?populate=*&filters[category][slug][$eq]=${categorySlug}`;
 
+    const { result, loading }: ResponseType = useApi({urlApi: url});
     //Filters
     const [filterTypeWeed, setFilterTypeWeed] = useState("");
     const [filterTaste, setFilterTaste] = useState("");
@@ -85,7 +86,7 @@ export default function Page() {
             {result !== undefined && !loading ? (
                 <h1 className="text-3xl font-medium px-3 mb-3 font-castor tracking-widest">{result[0].category.categoryName}</h1>
             ) : (
-                <Skeleton className="h-10 w-3/4 sm:w-1/4 mb-2" />
+                <Skeleton className="h-10 w-32 mb-2" />
             )}
             <Separator />
             <div

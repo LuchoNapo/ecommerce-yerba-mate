@@ -1,11 +1,16 @@
-import { useEffect, useState } from "react";
+import { ResultFilterType } from "@/types/filters";
+import { useEffect, useState } from "react"
 
-export function useGetProductBySlug(slug: string | string[]) {
+interface useApiProps {
+    urlApi: string;
+}
 
-    const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/products?filters[slug][$eq]=${slug}&populate=*`;
-    const [result, setResult] = useState(null);
+export function useApi({urlApi}: useApiProps) {
+    const url = urlApi;
+    const [result, setResult] = useState<ResultFilterType | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+
     useEffect(() => {
         (async () => {
             try {
@@ -15,7 +20,7 @@ export function useGetProductBySlug(slug: string | string[]) {
                 setLoading(false)
             } catch (error: unknown) {
                 if (error instanceof Error) {
-                    setError(error.message);
+                    setError(error.message); 
                 } else {
                     setError("Unknown error occurred");
                 }
@@ -25,6 +30,4 @@ export function useGetProductBySlug(slug: string | string[]) {
 
     }, [url])
     return { result, loading, error }
-
-
 }

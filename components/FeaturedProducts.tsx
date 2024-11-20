@@ -2,7 +2,6 @@
 "use client"
 
 import { useState, useEffect } from "react";
-import { useGetFeaturedProducts } from "@/api/getFeaturedProducts";
 import { ResponseType } from "@/types/response";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "./ui/carousel";
 import SkeletonSchema from "./SkeletonSchema";
@@ -13,9 +12,11 @@ import IconButton from "./IconButton";
 import { useRouter } from "next/navigation";
 import { useCart } from "@/hooks/useCart";
 import Badge from "./Badge";
+import { useApi } from "@/api/useApi";
 
 const FeaturedProducts = () => {
-    const { loading, result }: ResponseType = useGetFeaturedProducts()
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/products?filters[isFeatured][$eq]=true&populate=*`
+    const { loading, result }: ResponseType = useApi({urlApi: url});
     const router = useRouter()
     const { addItem } = useCart()
     const [grid, setGrid] = useState(0)

@@ -1,4 +1,4 @@
-import { useGetProductsField } from "@/api/getProductField";
+import { useApi } from "@/api/useApi";
 import { FilterType, ResultFilterType } from "@/types/filters";
 import { useEffect, useState } from "react";
 
@@ -26,7 +26,9 @@ const attributeLabelMap: { [key in AttributeKey]: string } = {
     typeOfStraw: "Tipo de Bombilla"
 };
 const FilterProduct = ({ filterProducts, setFilterProducts, attributeKey, setCurrentPage, isActive }: FilterProps) => {
-    const { result }: FilterType = useGetProductsField()
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/content-type-builder/content-types/api::product.product`;
+    const { result }: FilterType = useApi({urlApi: url});
+    console.log(result)
     const attributeEnum = result?.schema.attributes[attributeKey]?.enum;
     const [highlight, setHighlight] = useState(false);
     

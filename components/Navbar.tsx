@@ -13,10 +13,12 @@ import { useEffect, useState } from "react";
 const Navbar = () => {
 
     const router = useRouter();
-    const cart = useCart();
+    const {items} = useCart();
     const { lovedItems } = useLovedItem();
     const { theme } = useTheme();
     const [mounted, setMounted] = useState(false);
+
+    const totalItems = items.reduce((total, item) => total + (item.quantity || 1), 0);
 
 
     useEffect(() => {
@@ -39,12 +41,12 @@ const Navbar = () => {
                     <MenuList />
                 </div>
                 <div className="flex items-center justify-center gap-3 sm:gap-5 ">
-                    {cart.items.length === 0 ? (
+                    {totalItems === 0 ? (
                         <ShoppingCart strokeWidth="1" className="cursor-pointer" onClick={() => router.push("/cart")} />
                     ) : (
                         <div className="flex gap-1" onClick={() => router.push("/cart")}>
                             <BaggageClaim strokeWidth="1" className="cursor-pointer" />
-                            <span className="text-sm">{cart.items.length}</span>
+                            <span className="text-sm">{totalItems}</span>
                         </div>
                     )}
 

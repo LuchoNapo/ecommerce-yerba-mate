@@ -1,14 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
 "use client"
-import { useGetCategories } from "@/api/getCategories";
 import { CategoryType } from "@/types/category";
 import { ResponseType } from "@/types/response";
 import Link from "next/link";
 import SkeletonSchema from "./SkeletonSchema";
+import { useApi } from "@/api/useApi";
 
 
 const ChoseCategory = () => {
-    const { result, loading }: ResponseType = useGetCategories();
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/categories?populate=*`
+    const { result, loading }: ResponseType = useApi({urlApi: url});
 
     return (
         <div id="chooseCategory" className="mx-auto sm:py-16 sm:px-0 ">
