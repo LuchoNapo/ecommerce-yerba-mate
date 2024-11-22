@@ -45,7 +45,7 @@ const FeaturedProducts = () => {
                                     <Card className="border bg-gray-100 dark:bg-[#0D0B0A] dark:border-stone-900 border-gray-200 shadow-none">
                                         <CardContent className="relative flex items-center justify-center py-2">
                                             <img
-                                                className="size-[200px] object-contain select-none"
+                                                className="size-[200px] object-contain select-none drop-shadow-lg"
                                                 src={`${product.images[0].url}`}
                                                 alt={product.productName}
                                             />

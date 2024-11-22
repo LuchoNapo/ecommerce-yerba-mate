@@ -18,7 +18,7 @@ const CarouselProduct = (props: CarouselProductProps) => {
                     {images.map((image) => (
                         <CarouselItem key={image.id} className="flex ">
                             <img 
-                            className="rounded-lg w-full object-contain max-h-[450px]" 
+                            className="rounded-lg w-full object-contain max-h-[450px] drop-shadow-lg" 
                             src={`${image.url}`} 
                             alt="Image product" 
                             

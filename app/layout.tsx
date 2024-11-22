@@ -5,11 +5,10 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Toaster } from "@/components/ui/toaster";
-import NextTopLoader from "nextjs-toploader"
+import NextTopLoader from "nextjs-toploader";
 
 const urbanist = Urbanist({
-  subsets: ["latin"]
-
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
@@ -23,8 +22,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className={urbanist.className} >
+    <html lang="en">
+      <body className={`${urbanist.className} scroll-smooth`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"

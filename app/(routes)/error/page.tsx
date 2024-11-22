@@ -3,18 +3,16 @@
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 
-const Success = () => {
+const Error = () => {
     const router = useRouter()
     return (  
-        <div className="max-w-6xl py-4 mx-auto sm:py-16 md:px-14 px-5">
-            <div className="flex flex-col-reverse gap-5 sm:flex-row items-center">
-                <div className="flex justify-center">
-                    <img className="rounded-3xl w-80 lg:w-96 lg:h-[450px] h-80 object-cover object-bottom" src="mate-error.jpg" alt="success"/>
-                </div>
-                <div className="lg:max-w-[500px] text-pretty" >
-                    <h1 className="text-3xl">¡No se pudo realizar la compra correctamente!</h1>
-                    <p className="my-3">Por favor, inténtalo de nuevo o contacta con nosotros.</p>
-                    <p className="my-3">Gracias nuevamente por su confiar en Mateina!.</p>
+        <div className="h-full">
+            <div className="relative h-[600px] p-5 sm:p-20 text-center bg-[url('/mate-banner.jpg')] bg-cover bg-center grayscale text-white ">
+            <div className="absolute inset-0 bg-black/50 grayscale"></div>
+                <div className="absolute text-pretty bottom-1/2 left-1/2 -translate-x-1/2 translate-y-1/2">
+                    <h1 className="text-3xl font-castor tracking-wide">No pudimos procesar tu compra</h1>
+                    <p className="mt-3"> Lo sentimos, hubo un error al procesar tu pedido. Por favor, inténtalo de nuevo más tarde.</p>
+                    <p className="mb-3">Gracias nuevamente por su confiar en Mateina!.</p>
                     <Button onClick={() => router.push("/")}>Volver a la tienda</Button>
                 </div>
             </div>
@@ -22,4 +20,4 @@ const Success = () => {
     );
 }
  
-export default Success;
+export default Error;
