@@ -5,23 +5,26 @@ import { toast } from "./use-toast";
 
 interface LovedItemStore {
     lovedItems: ProductType[],
-    addLovedItem: (data: ProductType) => void
+    addLovedItem: (product: ProductType) => void
     removeLovedItem: (id: number) => void
+    isLoved: (id: number) => boolean
 }
 
 export const useLovedItem = create(persist<LovedItemStore>((set, get) => ({
     lovedItems: [],
-    addLovedItem: (data: ProductType) => {
+    addLovedItem: (product: ProductType) => {
         const currentLovedItems = get().lovedItems
-        const existingLovedItem = currentLovedItems.find((item) => item.id === data.id)
+        const existingLovedItem = currentLovedItems.find((item) => item.id === product.id)
 
         if (existingLovedItem) {
+
+            set({ lovedItems: [...get().lovedItems.filter((item) => item.id != product.id)] })
             return toast({
-                title: "El producto ya existe en tus favoritos ❣️",
+                title: "Producto eliminado de tus favoritos 💔"
             })
         }
         set({
-            lovedItems: [...get().lovedItems, data]
+            lovedItems: [...get().lovedItems, product]
         })
         toast({
             title: "Producto añadido a tus favoritos ❤️"
@@ -32,6 +35,10 @@ export const useLovedItem = create(persist<LovedItemStore>((set, get) => ({
         toast({
             title: "Producto eliminado de tus favoritos 💔"
         })
+    },
+    isLoved: (id: number) => {
+        const { lovedItems } = get();
+        return lovedItems.some((item) => item.id === id);
     },
 }), {
     name: "loved-lovedItem-storage",
