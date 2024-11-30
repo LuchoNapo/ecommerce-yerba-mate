@@ -1,14 +1,19 @@
 
 ## 🛍️ E-commerce Yerba Mate - Frontend
-This project showcases a modern e-commerce platform designed for the Yerba Mate niche. It includes features like product listings, shopping cart functionality, and integration with a backend built using TypeScript, Stripe, and PostgreSQL.
-The backend is hosted on Render and stores images in Cloudinary, while the database is managed with Railway.
+This project is the frontend for the Yerba Mate e-commerce platform. Built with `Next.js`, `TypeScript`, `Tailwind CSS`, and `shadcn/ui`, it is deployed on `Vercel`. It integrates `Stripe` for handling payment processing and provides a responsive, user-friendly interface.
+The backend is hosted on `Render` and stores images in `Cloudinary`, while the database is in `PostgreSQL` and managed with `Railway`.
 
 ### 🛠️ Project Technologies
 [<img alt="Static Badge" src="https://img.shields.io/badge/Next-black">](https://nextjs.org/) 
 [<img alt="Static Badge" src="https://img.shields.io/badge/TypeScript-%233178C6">](https://www.typescriptlang.org) 
-[<img alt="Static Badge" src="https://img.shields.io/badge/Shadcn-black">](https://shadcn.dev/) 
+[<img alt="Static Badge" src="https://img.shields.io/badge/Stripe-635BFF">](https://stripe.com/es-us)
+[<img alt="Static Badge" src="https://img.shields.io/badge/Axios-6E24E1">](https://axios-http.com/) 
+[<img alt="Static Badge" src="https://img.shields.io/badge/Shadcn-black">](https://ui.shadcn.com/) 
+[<img alt="Static Badge" src="https://img.shields.io/badge/Lucide-F56565">](https://lucide.dev/) 
 [<img alt="Static Badge" src="https://img.shields.io/badge/Tailwind-38BDF8">](https://tailwindcss.com/) 
+[<img alt="Static Badge" src="https://img.shields.io/badge/Zustand-5E4924">](https://zustand-demo.pmnd.rs/)
 [<img alt="Static Badge" src="https://img.shields.io/badge/Vercel-grey">](https://vercel.com/) 
+
 ---
 
 
@@ -22,7 +27,7 @@ The backend is hosted on Render and stores images in Cloudinary, while the datab
    ```bash
    git clone https://github.com/LuchoNapo/ecommerce-yerba-mate.git
    cd ecommerce-yerba-mate
-1. Install dependencies:
+2. Install dependencies:
    ```bash
    npm install
    # or
