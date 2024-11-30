@@ -59,3 +59,11 @@ ecommerce-yerba-mate/
 The project is deployed on [Vercel](https://vercel.com). You can see it in operation [here](https://ecommerce-yerba-mate.vercel.app/).
 > [!IMPORTANT]
 > Backend Startup Delay: The backend is hosted on a free-tier plan, which may result in delayed responses when starting the server. Please allow a few moments for the data to load when accessing the frontend.
+
+### 👤 Author <br>
+Luciano Andrés Napolitano <br>
+Web Developer passionate about creating modern web experiences. <br>
+[GitHub](https://github.com/LuchoNapo) | [LinkedIn](https://www.linkedin.com/in/luciano-napolitano/)
+
+
+
