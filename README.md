@@ -1,5 +1,5 @@
 
-## 🛍️ E-commerce Yerba Mate - Frontend
+## 🛍️ E-commerce Yerba Mate (Frontend)
 This project showcases a modern e-commerce platform designed for the Yerba Mate niche. It includes features like product listings, shopping cart functionality, and integration with a backend built using TypeScript, Stripe, and PostgreSQL.
 The backend is hosted on Render and stores images in Cloudinary, while the database is managed with Railway.
 
