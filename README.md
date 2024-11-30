@@ -46,7 +46,6 @@ The application will be available at `http://localhost:3000`.
 
 ```
 ecommerce-yerba-mate/
-ecommerce-yerba-mate/
 ├── app/                 # Main routes and pages logic with Next.js App Router
 ├── components/          # Reusable UI components
 ├── hooks/               # Custom hooks for reusable logic
